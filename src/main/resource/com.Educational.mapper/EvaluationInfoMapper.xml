@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Educational.mapper.EvaluationInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.Educational.entity.EvaluationInfo" >
+    <id column="evaluation_id" property="evaluationId" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="discipline_id" property="disciplineId" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="evaluation_xueqi" property="evaluationXueqi" jdbcType="VARCHAR" />
+    <result column="evaluation_month" property="evaluationMonth" jdbcType="VARCHAR" />
+    <result column="evaluation_major" property="evaluationMajor" jdbcType="VARCHAR" />
+    <result column="score1" property="score1" jdbcType="INTEGER" />
+    <result column="score2" property="score2" jdbcType="INTEGER" />
+    <result column="score3" property="score3" jdbcType="INTEGER" />
+    <result column="score4" property="score4" jdbcType="INTEGER" />
+    <result column="score5" property="score5" jdbcType="INTEGER" />
+    <result column="score6" property="score6" jdbcType="INTEGER" />
+    <result column="sum" property="sum" jdbcType="INTEGER" />
+    <result column="evaluation_time" property="evaluationTime" jdbcType="TIMESTAMP" />
+    <result column="evaluation_note" property="evaluationNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    evaluation_id, student_id, discipline_id, staff_id, class_id, evaluation_xueqi, evaluation_month, 
+    evaluation_major, score1, score2, score3, score4, score5, score6, sum, evaluation_time, 
+    evaluation_note
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.Educational.entity.EvaluationInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from evaluation_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from evaluation_info
+    where evaluation_id = #{evaluationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from evaluation_info
+    where evaluation_id = #{evaluationId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Educational.entity.EvaluationInfoExample" >
+    delete from evaluation_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Educational.entity.EvaluationInfo" >
+    insert into evaluation_info (evaluation_id, student_id, discipline_id, 
+      staff_id, class_id, evaluation_xueqi, 
+      evaluation_month, evaluation_major, score1, 
+      score2, score3, score4, 
+      score5, score6, sum, 
+      evaluation_time, evaluation_note)
+    values (#{evaluationId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{disciplineId,jdbcType=INTEGER}, 
+      #{staffId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{evaluationXueqi,jdbcType=VARCHAR}, 
+      #{evaluationMonth,jdbcType=VARCHAR}, #{evaluationMajor,jdbcType=VARCHAR}, #{score1,jdbcType=INTEGER}, 
+      #{score2,jdbcType=INTEGER}, #{score3,jdbcType=INTEGER}, #{score4,jdbcType=INTEGER}, 
+      #{score5,jdbcType=INTEGER}, #{score6,jdbcType=INTEGER}, #{sum,jdbcType=INTEGER}, 
+      #{evaluationTime,jdbcType=TIMESTAMP}, #{evaluationNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Educational.entity.EvaluationInfo" >
+    insert into evaluation_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="evaluationId != null" >
+        evaluation_id,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="disciplineId != null" >
+        discipline_id,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="evaluationXueqi != null" >
+        evaluation_xueqi,
+      </if>
+      <if test="evaluationMonth != null" >
+        evaluation_month,
+      </if>
+      <if test="evaluationMajor != null" >
+        evaluation_major,
+      </if>
+      <if test="score1 != null" >
+        score1,
+      </if>
+      <if test="score2 != null" >
+        score2,
+      </if>
+      <if test="score3 != null" >
+        score3,
+      </if>
+      <if test="score4 != null" >
+        score4,
+      </if>
+      <if test="score5 != null" >
+        score5,
+      </if>
+      <if test="score6 != null" >
+        score6,
+      </if>
+      <if test="sum != null" >
+        sum,
+      </if>
+      <if test="evaluationTime != null" >
+        evaluation_time,
+      </if>
+      <if test="evaluationNote != null" >
+        evaluation_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="evaluationId != null" >
+        #{evaluationId,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="disciplineId != null" >
+        #{disciplineId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationXueqi != null" >
+        #{evaluationXueqi,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationMonth != null" >
+        #{evaluationMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationMajor != null" >
+        #{evaluationMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="score1 != null" >
+        #{score1,jdbcType=INTEGER},
+      </if>
+      <if test="score2 != null" >
+        #{score2,jdbcType=INTEGER},
+      </if>
+      <if test="score3 != null" >
+        #{score3,jdbcType=INTEGER},
+      </if>
+      <if test="score4 != null" >
+        #{score4,jdbcType=INTEGER},
+      </if>
+      <if test="score5 != null" >
+        #{score5,jdbcType=INTEGER},
+      </if>
+      <if test="score6 != null" >
+        #{score6,jdbcType=INTEGER},
+      </if>
+      <if test="sum != null" >
+        #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationTime != null" >
+        #{evaluationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluationNote != null" >
+        #{evaluationNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Educational.entity.EvaluationInfoExample" resultType="java.lang.Integer" >
+    select count(*) from evaluation_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update evaluation_info
+    <set >
+      <if test="record.evaluationId != null" >
+        evaluation_id = #{record.evaluationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentId != null" >
+        student_id = #{record.studentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.disciplineId != null" >
+        discipline_id = #{record.disciplineId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        staff_id = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.classId != null" >
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.evaluationXueqi != null" >
+        evaluation_xueqi = #{record.evaluationXueqi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaluationMonth != null" >
+        evaluation_month = #{record.evaluationMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaluationMajor != null" >
+        evaluation_major = #{record.evaluationMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score1 != null" >
+        score1 = #{record.score1,jdbcType=INTEGER},
+      </if>
+      <if test="record.score2 != null" >
+        score2 = #{record.score2,jdbcType=INTEGER},
+      </if>
+      <if test="record.score3 != null" >
+        score3 = #{record.score3,jdbcType=INTEGER},
+      </if>
+      <if test="record.score4 != null" >
+        score4 = #{record.score4,jdbcType=INTEGER},
+      </if>
+      <if test="record.score5 != null" >
+        score5 = #{record.score5,jdbcType=INTEGER},
+      </if>
+      <if test="record.score6 != null" >
+        score6 = #{record.score6,jdbcType=INTEGER},
+      </if>
+      <if test="record.sum != null" >
+        sum = #{record.sum,jdbcType=INTEGER},
+      </if>
+      <if test="record.evaluationTime != null" >
+        evaluation_time = #{record.evaluationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.evaluationNote != null" >
+        evaluation_note = #{record.evaluationNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update evaluation_info
+    set evaluation_id = #{record.evaluationId,jdbcType=INTEGER},
+      student_id = #{record.studentId,jdbcType=INTEGER},
+      discipline_id = #{record.disciplineId,jdbcType=INTEGER},
+      staff_id = #{record.staffId,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      evaluation_xueqi = #{record.evaluationXueqi,jdbcType=VARCHAR},
+      evaluation_month = #{record.evaluationMonth,jdbcType=VARCHAR},
+      evaluation_major = #{record.evaluationMajor,jdbcType=VARCHAR},
+      score1 = #{record.score1,jdbcType=INTEGER},
+      score2 = #{record.score2,jdbcType=INTEGER},
+      score3 = #{record.score3,jdbcType=INTEGER},
+      score4 = #{record.score4,jdbcType=INTEGER},
+      score5 = #{record.score5,jdbcType=INTEGER},
+      score6 = #{record.score6,jdbcType=INTEGER},
+      sum = #{record.sum,jdbcType=INTEGER},
+      evaluation_time = #{record.evaluationTime,jdbcType=TIMESTAMP},
+      evaluation_note = #{record.evaluationNote,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Educational.entity.EvaluationInfo" >
+    update evaluation_info
+    <set >
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="disciplineId != null" >
+        discipline_id = #{disciplineId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationXueqi != null" >
+        evaluation_xueqi = #{evaluationXueqi,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationMonth != null" >
+        evaluation_month = #{evaluationMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationMajor != null" >
+        evaluation_major = #{evaluationMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="score1 != null" >
+        score1 = #{score1,jdbcType=INTEGER},
+      </if>
+      <if test="score2 != null" >
+        score2 = #{score2,jdbcType=INTEGER},
+      </if>
+      <if test="score3 != null" >
+        score3 = #{score3,jdbcType=INTEGER},
+      </if>
+      <if test="score4 != null" >
+        score4 = #{score4,jdbcType=INTEGER},
+      </if>
+      <if test="score5 != null" >
+        score5 = #{score5,jdbcType=INTEGER},
+      </if>
+      <if test="score6 != null" >
+        score6 = #{score6,jdbcType=INTEGER},
+      </if>
+      <if test="sum != null" >
+        sum = #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationTime != null" >
+        evaluation_time = #{evaluationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluationNote != null" >
+        evaluation_note = #{evaluationNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where evaluation_id = #{evaluationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Educational.entity.EvaluationInfo" >
+    update evaluation_info
+    set student_id = #{studentId,jdbcType=INTEGER},
+      discipline_id = #{disciplineId,jdbcType=INTEGER},
+      staff_id = #{staffId,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=INTEGER},
+      evaluation_xueqi = #{evaluationXueqi,jdbcType=VARCHAR},
+      evaluation_month = #{evaluationMonth,jdbcType=VARCHAR},
+      evaluation_major = #{evaluationMajor,jdbcType=VARCHAR},
+      score1 = #{score1,jdbcType=INTEGER},
+      score2 = #{score2,jdbcType=INTEGER},
+      score3 = #{score3,jdbcType=INTEGER},
+      score4 = #{score4,jdbcType=INTEGER},
+      score5 = #{score5,jdbcType=INTEGER},
+      score6 = #{score6,jdbcType=INTEGER},
+      sum = #{sum,jdbcType=INTEGER},
+      evaluation_time = #{evaluationTime,jdbcType=TIMESTAMP},
+      evaluation_note = #{evaluationNote,jdbcType=VARCHAR}
+    where evaluation_id = #{evaluationId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Educational.mapper.StudentPracticeSkillsMapper" >
+  <resultMap id="BaseResultMap" type="com.Educational.entity.StudentPracticeSkills" >
+    <id column="student_practice_id" property="studentPracticeId" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="practice_start" property="practiceStart" jdbcType="TIMESTAMP" />
+    <result column="practice_end" property="practiceEnd" jdbcType="TIMESTAMP" />
+    <result column="practice_address" property="practiceAddress" jdbcType="VARCHAR" />
+    <result column="practice_content" property="practiceContent" jdbcType="VARCHAR" />
+    <result column="practice_score" property="practiceScore" jdbcType="VARCHAR" />
+    <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="practice_note" property="practiceNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    student_practice_id, student_id, staff_id, practice_start, practice_end, practice_address, 
+    practice_content, practice_score, reg_time, practice_note
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.Educational.entity.StudentPracticeSkillsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student_practice_skills
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_practice_skills
+    where student_practice_id = #{studentPracticeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student_practice_skills
+    where student_practice_id = #{studentPracticeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Educational.entity.StudentPracticeSkillsExample" >
+    delete from student_practice_skills
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Educational.entity.StudentPracticeSkills" >
+    insert into student_practice_skills (student_practice_id, student_id, staff_id, 
+      practice_start, practice_end, practice_address, 
+      practice_content, practice_score, reg_time, 
+      practice_note)
+    values (#{studentPracticeId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, 
+      #{practiceStart,jdbcType=TIMESTAMP}, #{practiceEnd,jdbcType=TIMESTAMP}, #{practiceAddress,jdbcType=VARCHAR}, 
+      #{practiceContent,jdbcType=VARCHAR}, #{practiceScore,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
+      #{practiceNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Educational.entity.StudentPracticeSkills" >
+    insert into student_practice_skills
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentPracticeId != null" >
+        student_practice_id,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="practiceStart != null" >
+        practice_start,
+      </if>
+      <if test="practiceEnd != null" >
+        practice_end,
+      </if>
+      <if test="practiceAddress != null" >
+        practice_address,
+      </if>
+      <if test="practiceContent != null" >
+        practice_content,
+      </if>
+      <if test="practiceScore != null" >
+        practice_score,
+      </if>
+      <if test="regTime != null" >
+        reg_time,
+      </if>
+      <if test="practiceNote != null" >
+        practice_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentPracticeId != null" >
+        #{studentPracticeId,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="practiceStart != null" >
+        #{practiceStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="practiceEnd != null" >
+        #{practiceEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="practiceAddress != null" >
+        #{practiceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="practiceContent != null" >
+        #{practiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="practiceScore != null" >
+        #{practiceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="practiceNote != null" >
+        #{practiceNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Educational.entity.StudentPracticeSkillsExample" resultType="java.lang.Integer" >
+    select count(*) from student_practice_skills
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student_practice_skills
+    <set >
+      <if test="record.studentPracticeId != null" >
+        student_practice_id = #{record.studentPracticeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentId != null" >
+        student_id = #{record.studentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        staff_id = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.practiceStart != null" >
+        practice_start = #{record.practiceStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.practiceEnd != null" >
+        practice_end = #{record.practiceEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.practiceAddress != null" >
+        practice_address = #{record.practiceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.practiceContent != null" >
+        practice_content = #{record.practiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.practiceScore != null" >
+        practice_score = #{record.practiceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regTime != null" >
+        reg_time = #{record.regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.practiceNote != null" >
+        practice_note = #{record.practiceNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student_practice_skills
+    set student_practice_id = #{record.studentPracticeId,jdbcType=INTEGER},
+      student_id = #{record.studentId,jdbcType=INTEGER},
+      staff_id = #{record.staffId,jdbcType=INTEGER},
+      practice_start = #{record.practiceStart,jdbcType=TIMESTAMP},
+      practice_end = #{record.practiceEnd,jdbcType=TIMESTAMP},
+      practice_address = #{record.practiceAddress,jdbcType=VARCHAR},
+      practice_content = #{record.practiceContent,jdbcType=VARCHAR},
+      practice_score = #{record.practiceScore,jdbcType=VARCHAR},
+      reg_time = #{record.regTime,jdbcType=TIMESTAMP},
+      practice_note = #{record.practiceNote,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Educational.entity.StudentPracticeSkills" >
+    update student_practice_skills
+    <set >
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="practiceStart != null" >
+        practice_start = #{practiceStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="practiceEnd != null" >
+        practice_end = #{practiceEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="practiceAddress != null" >
+        practice_address = #{practiceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="practiceContent != null" >
+        practice_content = #{practiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="practiceScore != null" >
+        practice_score = #{practiceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="practiceNote != null" >
+        practice_note = #{practiceNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where student_practice_id = #{studentPracticeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Educational.entity.StudentPracticeSkills" >
+    update student_practice_skills
+    set student_id = #{studentId,jdbcType=INTEGER},
+      staff_id = #{staffId,jdbcType=INTEGER},
+      practice_start = #{practiceStart,jdbcType=TIMESTAMP},
+      practice_end = #{practiceEnd,jdbcType=TIMESTAMP},
+      practice_address = #{practiceAddress,jdbcType=VARCHAR},
+      practice_content = #{practiceContent,jdbcType=VARCHAR},
+      practice_score = #{practiceScore,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      practice_note = #{practiceNote,jdbcType=VARCHAR}
+    where student_practice_id = #{studentPracticeId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Educational.mapper.StudentInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.Educational.entity.StudentInfo" >
+    <id column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="student_no" property="studentNo" jdbcType="VARCHAR" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+    <result column="student_sex" property="studentSex" jdbcType="VARCHAR" />
+    <result column="student_name1" property="studentName1" jdbcType="VARCHAR" />
+    <result column="student_national" property="studentNational" jdbcType="VARCHAR" />
+    <result column="student_birthday" property="studentBirthday" jdbcType="VARCHAR" />
+    <result column="student_health" property="studentHealth" jdbcType="VARCHAR" />
+    <result column="student_native" property="studentNative" jdbcType="VARCHAR" />
+    <result column="student_indate" property="studentIndate" jdbcType="VARCHAR" />
+    <result column="student_marital" property="studentMarital" jdbcType="VARCHAR" />
+    <result column="student_address" property="studentAddress" jdbcType="VARCHAR" />
+    <result column="student_post" property="studentPost" jdbcType="VARCHAR" />
+    <result column="family_tellphone" property="familyTellphone" jdbcType="VARCHAR" />
+    <result column="student_tellphone" property="studentTellphone" jdbcType="VARCHAR" />
+    <result column="student_qq" property="studentQq" jdbcType="VARCHAR" />
+    <result column="student_isleague" property="studentIsleague" jdbcType="VARCHAR" />
+    <result column="student_join_time" property="studentJoinTime" jdbcType="VARCHAR" />
+    <result column="student_idcard" property="studentIdcard" jdbcType="VARCHAR" />
+    <result column="student_before_school" property="studentBeforeSchool" jdbcType="VARCHAR" />
+    <result column="student_hobby" property="studentHobby" jdbcType="VARCHAR" />
+    <result column="student_school" property="studentSchool" jdbcType="VARCHAR" />
+    <result column="student_pro" property="studentPro" jdbcType="VARCHAR" />
+    <result column="student_edu_sys" property="studentEduSys" jdbcType="VARCHAR" />
+    <result column="student_pro_city" property="studentProCity" jdbcType="VARCHAR" />
+    <result column="student_type" property="studentType" jdbcType="VARCHAR" />
+    <result column="student_ispay" property="studentIspay" jdbcType="VARCHAR" />
+    <result column="student_desc" property="studentDesc" jdbcType="VARCHAR" />
+    <result column="student_number" property="studentNumber" jdbcType="VARCHAR" />
+    <result column="student_password" property="studentPassword" jdbcType="VARCHAR" />
+    <result column="student_mark" property="studentMark" jdbcType="INTEGER" />
+    <result column="student_state" property="studentState" jdbcType="VARCHAR" />
+    <result column="student_hard" property="studentHard" jdbcType="VARCHAR" />
+    <result column="student_loan" property="studentLoan" jdbcType="VARCHAR" />
+    <result column="student_muster" property="studentMuster" jdbcType="VARCHAR" />
+    <result column="student_project" property="studentProject" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    student_id, staff_id, class_id, student_no, student_name, student_sex, student_name1, 
+    student_national, student_birthday, student_health, student_native, student_indate, 
+    student_marital, student_address, student_post, family_tellphone, student_tellphone, 
+    student_qq, student_isleague, student_join_time, student_idcard, student_before_school, 
+    student_hobby, student_school, student_pro, student_edu_sys, student_pro_city, student_type, 
+    student_ispay, student_desc, student_number, student_password, student_mark, student_state, 
+    student_hard, student_loan, student_muster, student_project
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.Educational.entity.StudentInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_info
+    where student_id = #{studentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student_info
+    where student_id = #{studentId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Educational.entity.StudentInfoExample" >
+    delete from student_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Educational.entity.StudentInfo" >
+    insert into student_info (student_id, staff_id, class_id, 
+      student_no, student_name, student_sex, 
+      student_name1, student_national, student_birthday, 
+      student_health, student_native, student_indate, 
+      student_marital, student_address, student_post, 
+      family_tellphone, student_tellphone, student_qq, 
+      student_isleague, student_join_time, student_idcard, 
+      student_before_school, student_hobby, student_school, 
+      student_pro, student_edu_sys, student_pro_city, 
+      student_type, student_ispay, student_desc, 
+      student_number, student_password, student_mark, 
+      student_state, student_hard, student_loan, 
+      student_muster, student_project)
+    values (#{studentId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, 
+      #{studentNo,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, #{studentSex,jdbcType=VARCHAR}, 
+      #{studentName1,jdbcType=VARCHAR}, #{studentNational,jdbcType=VARCHAR}, #{studentBirthday,jdbcType=VARCHAR}, 
+      #{studentHealth,jdbcType=VARCHAR}, #{studentNative,jdbcType=VARCHAR}, #{studentIndate,jdbcType=VARCHAR}, 
+      #{studentMarital,jdbcType=VARCHAR}, #{studentAddress,jdbcType=VARCHAR}, #{studentPost,jdbcType=VARCHAR}, 
+      #{familyTellphone,jdbcType=VARCHAR}, #{studentTellphone,jdbcType=VARCHAR}, #{studentQq,jdbcType=VARCHAR}, 
+      #{studentIsleague,jdbcType=VARCHAR}, #{studentJoinTime,jdbcType=VARCHAR}, #{studentIdcard,jdbcType=VARCHAR}, 
+      #{studentBeforeSchool,jdbcType=VARCHAR}, #{studentHobby,jdbcType=VARCHAR}, #{studentSchool,jdbcType=VARCHAR}, 
+      #{studentPro,jdbcType=VARCHAR}, #{studentEduSys,jdbcType=VARCHAR}, #{studentProCity,jdbcType=VARCHAR}, 
+      #{studentType,jdbcType=VARCHAR}, #{studentIspay,jdbcType=VARCHAR}, #{studentDesc,jdbcType=VARCHAR}, 
+      #{studentNumber,jdbcType=VARCHAR}, #{studentPassword,jdbcType=VARCHAR}, #{studentMark,jdbcType=INTEGER}, 
+      #{studentState,jdbcType=VARCHAR}, #{studentHard,jdbcType=VARCHAR}, #{studentLoan,jdbcType=VARCHAR}, 
+      #{studentMuster,jdbcType=VARCHAR}, #{studentProject,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Educational.entity.StudentInfo" >
+    insert into student_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="studentNo != null" >
+        student_no,
+      </if>
+      <if test="studentName != null" >
+        student_name,
+      </if>
+      <if test="studentSex != null" >
+        student_sex,
+      </if>
+      <if test="studentName1 != null" >
+        student_name1,
+      </if>
+      <if test="studentNational != null" >
+        student_national,
+      </if>
+      <if test="studentBirthday != null" >
+        student_birthday,
+      </if>
+      <if test="studentHealth != null" >
+        student_health,
+      </if>
+      <if test="studentNative != null" >
+        student_native,
+      </if>
+      <if test="studentIndate != null" >
+        student_indate,
+      </if>
+      <if test="studentMarital != null" >
+        student_marital,
+      </if>
+      <if test="studentAddress != null" >
+        student_address,
+      </if>
+      <if test="studentPost != null" >
+        student_post,
+      </if>
+      <if test="familyTellphone != null" >
+        family_tellphone,
+      </if>
+      <if test="studentTellphone != null" >
+        student_tellphone,
+      </if>
+      <if test="studentQq != null" >
+        student_qq,
+      </if>
+      <if test="studentIsleague != null" >
+        student_isleague,
+      </if>
+      <if test="studentJoinTime != null" >
+        student_join_time,
+      </if>
+      <if test="studentIdcard != null" >
+        student_idcard,
+      </if>
+      <if test="studentBeforeSchool != null" >
+        student_before_school,
+      </if>
+      <if test="studentHobby != null" >
+        student_hobby,
+      </if>
+      <if test="studentSchool != null" >
+        student_school,
+      </if>
+      <if test="studentPro != null" >
+        student_pro,
+      </if>
+      <if test="studentEduSys != null" >
+        student_edu_sys,
+      </if>
+      <if test="studentProCity != null" >
+        student_pro_city,
+      </if>
+      <if test="studentType != null" >
+        student_type,
+      </if>
+      <if test="studentIspay != null" >
+        student_ispay,
+      </if>
+      <if test="studentDesc != null" >
+        student_desc,
+      </if>
+      <if test="studentNumber != null" >
+        student_number,
+      </if>
+      <if test="studentPassword != null" >
+        student_password,
+      </if>
+      <if test="studentMark != null" >
+        student_mark,
+      </if>
+      <if test="studentState != null" >
+        student_state,
+      </if>
+      <if test="studentHard != null" >
+        student_hard,
+      </if>
+      <if test="studentLoan != null" >
+        student_loan,
+      </if>
+      <if test="studentMuster != null" >
+        student_muster,
+      </if>
+      <if test="studentProject != null" >
+        student_project,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="studentNo != null" >
+        #{studentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentSex != null" >
+        #{studentSex,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName1 != null" >
+        #{studentName1,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNational != null" >
+        #{studentNational,jdbcType=VARCHAR},
+      </if>
+      <if test="studentBirthday != null" >
+        #{studentBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="studentHealth != null" >
+        #{studentHealth,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNative != null" >
+        #{studentNative,jdbcType=VARCHAR},
+      </if>
+      <if test="studentIndate != null" >
+        #{studentIndate,jdbcType=VARCHAR},
+      </if>
+      <if test="studentMarital != null" >
+        #{studentMarital,jdbcType=VARCHAR},
+      </if>
+      <if test="studentAddress != null" >
+        #{studentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="studentPost != null" >
+        #{studentPost,jdbcType=VARCHAR},
+      </if>
+      <if test="familyTellphone != null" >
+        #{familyTellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="studentTellphone != null" >
+        #{studentTellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="studentQq != null" >
+        #{studentQq,jdbcType=VARCHAR},
+      </if>
+      <if test="studentIsleague != null" >
+        #{studentIsleague,jdbcType=VARCHAR},
+      </if>
+      <if test="studentJoinTime != null" >
+        #{studentJoinTime,jdbcType=VARCHAR},
+      </if>
+      <if test="studentIdcard != null" >
+        #{studentIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="studentBeforeSchool != null" >
+        #{studentBeforeSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="studentHobby != null" >
+        #{studentHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="studentSchool != null" >
+        #{studentSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="studentPro != null" >
+        #{studentPro,jdbcType=VARCHAR},
+      </if>
+      <if test="studentEduSys != null" >
+        #{studentEduSys,jdbcType=VARCHAR},
+      </if>
+      <if test="studentProCity != null" >
+        #{studentProCity,jdbcType=VARCHAR},
+      </if>
+      <if test="studentType != null" >
+        #{studentType,jdbcType=VARCHAR},
+      </if>
+      <if test="studentIspay != null" >
+        #{studentIspay,jdbcType=VARCHAR},
+      </if>
+      <if test="studentDesc != null" >
+        #{studentDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNumber != null" >
+        #{studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="studentPassword != null" >
+        #{studentPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="studentMark != null" >
+        #{studentMark,jdbcType=INTEGER},
+      </if>
+      <if test="studentState != null" >
+        #{studentState,jdbcType=VARCHAR},
+      </if>
+      <if test="studentHard != null" >
+        #{studentHard,jdbcType=VARCHAR},
+      </if>
+      <if test="studentLoan != null" >
+        #{studentLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="studentMuster != null" >
+        #{studentMuster,jdbcType=VARCHAR},
+      </if>
+      <if test="studentProject != null" >
+        #{studentProject,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Educational.entity.StudentInfoExample" resultType="java.lang.Integer" >
+    select count(*) from student_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student_info
+    <set >
+      <if test="record.studentId != null" >
+        student_id = #{record.studentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        staff_id = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.classId != null" >
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentNo != null" >
+        student_no = #{record.studentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentName != null" >
+        student_name = #{record.studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentSex != null" >
+        student_sex = #{record.studentSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentName1 != null" >
+        student_name1 = #{record.studentName1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentNational != null" >
+        student_national = #{record.studentNational,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentBirthday != null" >
+        student_birthday = #{record.studentBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentHealth != null" >
+        student_health = #{record.studentHealth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentNative != null" >
+        student_native = #{record.studentNative,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentIndate != null" >
+        student_indate = #{record.studentIndate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentMarital != null" >
+        student_marital = #{record.studentMarital,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentAddress != null" >
+        student_address = #{record.studentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentPost != null" >
+        student_post = #{record.studentPost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyTellphone != null" >
+        family_tellphone = #{record.familyTellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentTellphone != null" >
+        student_tellphone = #{record.studentTellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentQq != null" >
+        student_qq = #{record.studentQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentIsleague != null" >
+        student_isleague = #{record.studentIsleague,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentJoinTime != null" >
+        student_join_time = #{record.studentJoinTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentIdcard != null" >
+        student_idcard = #{record.studentIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentBeforeSchool != null" >
+        student_before_school = #{record.studentBeforeSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentHobby != null" >
+        student_hobby = #{record.studentHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentSchool != null" >
+        student_school = #{record.studentSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentPro != null" >
+        student_pro = #{record.studentPro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentEduSys != null" >
+        student_edu_sys = #{record.studentEduSys,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentProCity != null" >
+        student_pro_city = #{record.studentProCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentType != null" >
+        student_type = #{record.studentType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentIspay != null" >
+        student_ispay = #{record.studentIspay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentDesc != null" >
+        student_desc = #{record.studentDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentNumber != null" >
+        student_number = #{record.studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentPassword != null" >
+        student_password = #{record.studentPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentMark != null" >
+        student_mark = #{record.studentMark,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentState != null" >
+        student_state = #{record.studentState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentHard != null" >
+        student_hard = #{record.studentHard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentLoan != null" >
+        student_loan = #{record.studentLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentMuster != null" >
+        student_muster = #{record.studentMuster,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentProject != null" >
+        student_project = #{record.studentProject,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student_info
+    set student_id = #{record.studentId,jdbcType=INTEGER},
+      staff_id = #{record.staffId,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      student_no = #{record.studentNo,jdbcType=VARCHAR},
+      student_name = #{record.studentName,jdbcType=VARCHAR},
+      student_sex = #{record.studentSex,jdbcType=VARCHAR},
+      student_name1 = #{record.studentName1,jdbcType=VARCHAR},
+      student_national = #{record.studentNational,jdbcType=VARCHAR},
+      student_birthday = #{record.studentBirthday,jdbcType=VARCHAR},
+      student_health = #{record.studentHealth,jdbcType=VARCHAR},
+      student_native = #{record.studentNative,jdbcType=VARCHAR},
+      student_indate = #{record.studentIndate,jdbcType=VARCHAR},
+      student_marital = #{record.studentMarital,jdbcType=VARCHAR},
+      student_address = #{record.studentAddress,jdbcType=VARCHAR},
+      student_post = #{record.studentPost,jdbcType=VARCHAR},
+      family_tellphone = #{record.familyTellphone,jdbcType=VARCHAR},
+      student_tellphone = #{record.studentTellphone,jdbcType=VARCHAR},
+      student_qq = #{record.studentQq,jdbcType=VARCHAR},
+      student_isleague = #{record.studentIsleague,jdbcType=VARCHAR},
+      student_join_time = #{record.studentJoinTime,jdbcType=VARCHAR},
+      student_idcard = #{record.studentIdcard,jdbcType=VARCHAR},
+      student_before_school = #{record.studentBeforeSchool,jdbcType=VARCHAR},
+      student_hobby = #{record.studentHobby,jdbcType=VARCHAR},
+      student_school = #{record.studentSchool,jdbcType=VARCHAR},
+      student_pro = #{record.studentPro,jdbcType=VARCHAR},
+      student_edu_sys = #{record.studentEduSys,jdbcType=VARCHAR},
+      student_pro_city = #{record.studentProCity,jdbcType=VARCHAR},
+      student_type = #{record.studentType,jdbcType=VARCHAR},
+      student_ispay = #{record.studentIspay,jdbcType=VARCHAR},
+      student_desc = #{record.studentDesc,jdbcType=VARCHAR},
+      student_number = #{record.studentNumber,jdbcType=VARCHAR},
+      student_password = #{record.studentPassword,jdbcType=VARCHAR},
+      student_mark = #{record.studentMark,jdbcType=INTEGER},
+      student_state = #{record.studentState,jdbcType=VARCHAR},
+      student_hard = #{record.studentHard,jdbcType=VARCHAR},
+      student_loan = #{record.studentLoan,jdbcType=VARCHAR},
+      student_muster = #{record.studentMuster,jdbcType=VARCHAR},
+      student_project = #{record.studentProject,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Educational.entity.StudentInfo" >
+    update student_info
+    <set >
+      <if test="staffId != null" >
+        staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="studentNo != null" >
+        student_no = #{studentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentSex != null" >
+        student_sex = #{studentSex,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName1 != null" >
+        student_name1 = #{studentName1,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNational != null" >
+        student_national = #{studentNational,jdbcType=VARCHAR},
+      </if>
+      <if test="studentBirthday != null" >
+        student_birthday = #{studentBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="studentHealth != null" >
+        student_health = #{studentHealth,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNative != null" >
+        student_native = #{studentNative,jdbcType=VARCHAR},
+      </if>
+      <if test="studentIndate != null" >
+        student_indate = #{studentIndate,jdbcType=VARCHAR},
+      </if>
+      <if test="studentMarital != null" >
+        student_marital = #{studentMarital,jdbcType=VARCHAR},
+      </if>
+      <if test="studentAddress != null" >
+        student_address = #{studentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="studentPost != null" >
+        student_post = #{studentPost,jdbcType=VARCHAR},
+      </if>
+      <if test="familyTellphone != null" >
+        family_tellphone = #{familyTellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="studentTellphone != null" >
+        student_tellphone = #{studentTellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="studentQq != null" >
+        student_qq = #{studentQq,jdbcType=VARCHAR},
+      </if>
+      <if test="studentIsleague != null" >
+        student_isleague = #{studentIsleague,jdbcType=VARCHAR},
+      </if>
+      <if test="studentJoinTime != null" >
+        student_join_time = #{studentJoinTime,jdbcType=VARCHAR},
+      </if>
+      <if test="studentIdcard != null" >
+        student_idcard = #{studentIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="studentBeforeSchool != null" >
+        student_before_school = #{studentBeforeSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="studentHobby != null" >
+        student_hobby = #{studentHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="studentSchool != null" >
+        student_school = #{studentSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="studentPro != null" >
+        student_pro = #{studentPro,jdbcType=VARCHAR},
+      </if>
+      <if test="studentEduSys != null" >
+        student_edu_sys = #{studentEduSys,jdbcType=VARCHAR},
+      </if>
+      <if test="studentProCity != null" >
+        student_pro_city = #{studentProCity,jdbcType=VARCHAR},
+      </if>
+      <if test="studentType != null" >
+        student_type = #{studentType,jdbcType=VARCHAR},
+      </if>
+      <if test="studentIspay != null" >
+        student_ispay = #{studentIspay,jdbcType=VARCHAR},
+      </if>
+      <if test="studentDesc != null" >
+        student_desc = #{studentDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNumber != null" >
+        student_number = #{studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="studentPassword != null" >
+        student_password = #{studentPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="studentMark != null" >
+        student_mark = #{studentMark,jdbcType=INTEGER},
+      </if>
+      <if test="studentState != null" >
+        student_state = #{studentState,jdbcType=VARCHAR},
+      </if>
+      <if test="studentHard != null" >
+        student_hard = #{studentHard,jdbcType=VARCHAR},
+      </if>
+      <if test="studentLoan != null" >
+        student_loan = #{studentLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="studentMuster != null" >
+        student_muster = #{studentMuster,jdbcType=VARCHAR},
+      </if>
+      <if test="studentProject != null" >
+        student_project = #{studentProject,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where student_id = #{studentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Educational.entity.StudentInfo" >
+    update student_info
+    set staff_id = #{staffId,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=INTEGER},
+      student_no = #{studentNo,jdbcType=VARCHAR},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      student_sex = #{studentSex,jdbcType=VARCHAR},
+      student_name1 = #{studentName1,jdbcType=VARCHAR},
+      student_national = #{studentNational,jdbcType=VARCHAR},
+      student_birthday = #{studentBirthday,jdbcType=VARCHAR},
+      student_health = #{studentHealth,jdbcType=VARCHAR},
+      student_native = #{studentNative,jdbcType=VARCHAR},
+      student_indate = #{studentIndate,jdbcType=VARCHAR},
+      student_marital = #{studentMarital,jdbcType=VARCHAR},
+      student_address = #{studentAddress,jdbcType=VARCHAR},
+      student_post = #{studentPost,jdbcType=VARCHAR},
+      family_tellphone = #{familyTellphone,jdbcType=VARCHAR},
+      student_tellphone = #{studentTellphone,jdbcType=VARCHAR},
+      student_qq = #{studentQq,jdbcType=VARCHAR},
+      student_isleague = #{studentIsleague,jdbcType=VARCHAR},
+      student_join_time = #{studentJoinTime,jdbcType=VARCHAR},
+      student_idcard = #{studentIdcard,jdbcType=VARCHAR},
+      student_before_school = #{studentBeforeSchool,jdbcType=VARCHAR},
+      student_hobby = #{studentHobby,jdbcType=VARCHAR},
+      student_school = #{studentSchool,jdbcType=VARCHAR},
+      student_pro = #{studentPro,jdbcType=VARCHAR},
+      student_edu_sys = #{studentEduSys,jdbcType=VARCHAR},
+      student_pro_city = #{studentProCity,jdbcType=VARCHAR},
+      student_type = #{studentType,jdbcType=VARCHAR},
+      student_ispay = #{studentIspay,jdbcType=VARCHAR},
+      student_desc = #{studentDesc,jdbcType=VARCHAR},
+      student_number = #{studentNumber,jdbcType=VARCHAR},
+      student_password = #{studentPassword,jdbcType=VARCHAR},
+      student_mark = #{studentMark,jdbcType=INTEGER},
+      student_state = #{studentState,jdbcType=VARCHAR},
+      student_hard = #{studentHard,jdbcType=VARCHAR},
+      student_loan = #{studentLoan,jdbcType=VARCHAR},
+      student_muster = #{studentMuster,jdbcType=VARCHAR},
+      student_project = #{studentProject,jdbcType=DOUBLE}
+    where student_id = #{studentId,jdbcType=INTEGER}
+  </update>
+</mapper>

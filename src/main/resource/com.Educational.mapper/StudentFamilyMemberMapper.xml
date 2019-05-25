@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Educational.mapper.StudentFamilyMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.Educational.entity.StudentFamilyMember" >
+    <id column="student_family_id" property="studentFamilyId" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="family_name" property="familyName" jdbcType="VARCHAR" />
+    <result column="family_app" property="familyApp" jdbcType="VARCHAR" />
+    <result column="family_age" property="familyAge" jdbcType="INTEGER" />
+    <result column="family_zcmm" property="familyZcmm" jdbcType="VARCHAR" />
+    <result column="workplace" property="workplace" jdbcType="VARCHAR" />
+    <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="family_note" property="familyNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    student_family_id, student_id, staff_id, family_name, family_app, family_age, family_zcmm, 
+    workplace, reg_time, family_note
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.Educational.entity.StudentFamilyMemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student_family_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_family_member
+    where student_family_id = #{studentFamilyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student_family_member
+    where student_family_id = #{studentFamilyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Educational.entity.StudentFamilyMemberExample" >
+    delete from student_family_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Educational.entity.StudentFamilyMember" >
+    insert into student_family_member (student_family_id, student_id, staff_id, 
+      family_name, family_app, family_age, 
+      family_zcmm, workplace, reg_time, 
+      family_note)
+    values (#{studentFamilyId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, 
+      #{familyName,jdbcType=VARCHAR}, #{familyApp,jdbcType=VARCHAR}, #{familyAge,jdbcType=INTEGER}, 
+      #{familyZcmm,jdbcType=VARCHAR}, #{workplace,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
+      #{familyNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Educational.entity.StudentFamilyMember" >
+    insert into student_family_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentFamilyId != null" >
+        student_family_id,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="familyName != null" >
+        family_name,
+      </if>
+      <if test="familyApp != null" >
+        family_app,
+      </if>
+      <if test="familyAge != null" >
+        family_age,
+      </if>
+      <if test="familyZcmm != null" >
+        family_zcmm,
+      </if>
+      <if test="workplace != null" >
+        workplace,
+      </if>
+      <if test="regTime != null" >
+        reg_time,
+      </if>
+      <if test="familyNote != null" >
+        family_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentFamilyId != null" >
+        #{studentFamilyId,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="familyName != null" >
+        #{familyName,jdbcType=VARCHAR},
+      </if>
+      <if test="familyApp != null" >
+        #{familyApp,jdbcType=VARCHAR},
+      </if>
+      <if test="familyAge != null" >
+        #{familyAge,jdbcType=INTEGER},
+      </if>
+      <if test="familyZcmm != null" >
+        #{familyZcmm,jdbcType=VARCHAR},
+      </if>
+      <if test="workplace != null" >
+        #{workplace,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="familyNote != null" >
+        #{familyNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Educational.entity.StudentFamilyMemberExample" resultType="java.lang.Integer" >
+    select count(*) from student_family_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student_family_member
+    <set >
+      <if test="record.studentFamilyId != null" >
+        student_family_id = #{record.studentFamilyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentId != null" >
+        student_id = #{record.studentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        staff_id = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyName != null" >
+        family_name = #{record.familyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyApp != null" >
+        family_app = #{record.familyApp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyAge != null" >
+        family_age = #{record.familyAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyZcmm != null" >
+        family_zcmm = #{record.familyZcmm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workplace != null" >
+        workplace = #{record.workplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regTime != null" >
+        reg_time = #{record.regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.familyNote != null" >
+        family_note = #{record.familyNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student_family_member
+    set student_family_id = #{record.studentFamilyId,jdbcType=INTEGER},
+      student_id = #{record.studentId,jdbcType=INTEGER},
+      staff_id = #{record.staffId,jdbcType=INTEGER},
+      family_name = #{record.familyName,jdbcType=VARCHAR},
+      family_app = #{record.familyApp,jdbcType=VARCHAR},
+      family_age = #{record.familyAge,jdbcType=INTEGER},
+      family_zcmm = #{record.familyZcmm,jdbcType=VARCHAR},
+      workplace = #{record.workplace,jdbcType=VARCHAR},
+      reg_time = #{record.regTime,jdbcType=TIMESTAMP},
+      family_note = #{record.familyNote,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Educational.entity.StudentFamilyMember" >
+    update student_family_member
+    <set >
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="familyName != null" >
+        family_name = #{familyName,jdbcType=VARCHAR},
+      </if>
+      <if test="familyApp != null" >
+        family_app = #{familyApp,jdbcType=VARCHAR},
+      </if>
+      <if test="familyAge != null" >
+        family_age = #{familyAge,jdbcType=INTEGER},
+      </if>
+      <if test="familyZcmm != null" >
+        family_zcmm = #{familyZcmm,jdbcType=VARCHAR},
+      </if>
+      <if test="workplace != null" >
+        workplace = #{workplace,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="familyNote != null" >
+        family_note = #{familyNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where student_family_id = #{studentFamilyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Educational.entity.StudentFamilyMember" >
+    update student_family_member
+    set student_id = #{studentId,jdbcType=INTEGER},
+      staff_id = #{staffId,jdbcType=INTEGER},
+      family_name = #{familyName,jdbcType=VARCHAR},
+      family_app = #{familyApp,jdbcType=VARCHAR},
+      family_age = #{familyAge,jdbcType=INTEGER},
+      family_zcmm = #{familyZcmm,jdbcType=VARCHAR},
+      workplace = #{workplace,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      family_note = #{familyNote,jdbcType=VARCHAR}
+    where student_family_id = #{studentFamilyId,jdbcType=INTEGER}
+  </update>
+</mapper>

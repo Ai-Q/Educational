@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Educational.mapper.StudentLearnExperienceMapper" >
+  <resultMap id="BaseResultMap" type="com.Educational.entity.StudentLearnExperience" >
+    <id column="student_learn_id" property="studentLearnId" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="learn_allyears" property="learnAllyears" jdbcType="VARCHAR" />
+    <result column="learn_school" property="learnSchool" jdbcType="VARCHAR" />
+    <result column="learn_position" property="learnPosition" jdbcType="VARCHAR" />
+    <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="learn_note" property="learnNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    student_learn_id, student_id, staff_id, learn_allyears, learn_school, learn_position, 
+    reg_time, learn_note
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.Educational.entity.StudentLearnExperienceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student_learn_experience
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_learn_experience
+    where student_learn_id = #{studentLearnId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student_learn_experience
+    where student_learn_id = #{studentLearnId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Educational.entity.StudentLearnExperienceExample" >
+    delete from student_learn_experience
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Educational.entity.StudentLearnExperience" >
+    insert into student_learn_experience (student_learn_id, student_id, staff_id, 
+      learn_allyears, learn_school, learn_position, 
+      reg_time, learn_note)
+    values (#{studentLearnId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, 
+      #{learnAllyears,jdbcType=VARCHAR}, #{learnSchool,jdbcType=VARCHAR}, #{learnPosition,jdbcType=VARCHAR}, 
+      #{regTime,jdbcType=TIMESTAMP}, #{learnNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Educational.entity.StudentLearnExperience" >
+    insert into student_learn_experience
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentLearnId != null" >
+        student_learn_id,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="learnAllyears != null" >
+        learn_allyears,
+      </if>
+      <if test="learnSchool != null" >
+        learn_school,
+      </if>
+      <if test="learnPosition != null" >
+        learn_position,
+      </if>
+      <if test="regTime != null" >
+        reg_time,
+      </if>
+      <if test="learnNote != null" >
+        learn_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentLearnId != null" >
+        #{studentLearnId,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="learnAllyears != null" >
+        #{learnAllyears,jdbcType=VARCHAR},
+      </if>
+      <if test="learnSchool != null" >
+        #{learnSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="learnPosition != null" >
+        #{learnPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="learnNote != null" >
+        #{learnNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Educational.entity.StudentLearnExperienceExample" resultType="java.lang.Integer" >
+    select count(*) from student_learn_experience
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student_learn_experience
+    <set >
+      <if test="record.studentLearnId != null" >
+        student_learn_id = #{record.studentLearnId,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentId != null" >
+        student_id = #{record.studentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        staff_id = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.learnAllyears != null" >
+        learn_allyears = #{record.learnAllyears,jdbcType=VARCHAR},
+      </if>
+      <if test="record.learnSchool != null" >
+        learn_school = #{record.learnSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.learnPosition != null" >
+        learn_position = #{record.learnPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regTime != null" >
+        reg_time = #{record.regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.learnNote != null" >
+        learn_note = #{record.learnNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student_learn_experience
+    set student_learn_id = #{record.studentLearnId,jdbcType=INTEGER},
+      student_id = #{record.studentId,jdbcType=INTEGER},
+      staff_id = #{record.staffId,jdbcType=INTEGER},
+      learn_allyears = #{record.learnAllyears,jdbcType=VARCHAR},
+      learn_school = #{record.learnSchool,jdbcType=VARCHAR},
+      learn_position = #{record.learnPosition,jdbcType=VARCHAR},
+      reg_time = #{record.regTime,jdbcType=TIMESTAMP},
+      learn_note = #{record.learnNote,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Educational.entity.StudentLearnExperience" >
+    update student_learn_experience
+    <set >
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="learnAllyears != null" >
+        learn_allyears = #{learnAllyears,jdbcType=VARCHAR},
+      </if>
+      <if test="learnSchool != null" >
+        learn_school = #{learnSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="learnPosition != null" >
+        learn_position = #{learnPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="learnNote != null" >
+        learn_note = #{learnNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where student_learn_id = #{studentLearnId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Educational.entity.StudentLearnExperience" >
+    update student_learn_experience
+    set student_id = #{studentId,jdbcType=INTEGER},
+      staff_id = #{staffId,jdbcType=INTEGER},
+      learn_allyears = #{learnAllyears,jdbcType=VARCHAR},
+      learn_school = #{learnSchool,jdbcType=VARCHAR},
+      learn_position = #{learnPosition,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      learn_note = #{learnNote,jdbcType=VARCHAR}
+    where student_learn_id = #{studentLearnId,jdbcType=INTEGER}
+  </update>
+</mapper>

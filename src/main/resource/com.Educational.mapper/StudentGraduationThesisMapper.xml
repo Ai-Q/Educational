@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Educational.mapper.StudentGraduationThesisMapper" >
+  <resultMap id="BaseResultMap" type="com.Educational.entity.StudentGraduationThesis" >
+    <id column="student_paper_id" property="studentPaperId" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="paper_title" property="paperTitle" jdbcType="VARCHAR" />
+    <result column="paper_teacher" property="paperTeacher" jdbcType="VARCHAR" />
+    <result column="paper_start" property="paperStart" jdbcType="VARCHAR" />
+    <result column="paper_time" property="paperTime" jdbcType="TIMESTAMP" />
+    <result column="paper_score" property="paperScore" jdbcType="VARCHAR" />
+    <result column="paper_comments" property="paperComments" jdbcType="VARCHAR" />
+    <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="paper_note" property="paperNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    student_paper_id, student_id, staff_id, paper_title, paper_teacher, paper_start, 
+    paper_time, paper_score, paper_comments, reg_time, paper_note
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.Educational.entity.StudentGraduationThesisExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student_graduation_thesis
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_graduation_thesis
+    where student_paper_id = #{studentPaperId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student_graduation_thesis
+    where student_paper_id = #{studentPaperId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Educational.entity.StudentGraduationThesisExample" >
+    delete from student_graduation_thesis
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Educational.entity.StudentGraduationThesis" >
+    insert into student_graduation_thesis (student_paper_id, student_id, staff_id, 
+      paper_title, paper_teacher, paper_start, 
+      paper_time, paper_score, paper_comments, 
+      reg_time, paper_note)
+    values (#{studentPaperId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, 
+      #{paperTitle,jdbcType=VARCHAR}, #{paperTeacher,jdbcType=VARCHAR}, #{paperStart,jdbcType=VARCHAR}, 
+      #{paperTime,jdbcType=TIMESTAMP}, #{paperScore,jdbcType=VARCHAR}, #{paperComments,jdbcType=VARCHAR}, 
+      #{regTime,jdbcType=TIMESTAMP}, #{paperNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Educational.entity.StudentGraduationThesis" >
+    insert into student_graduation_thesis
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentPaperId != null" >
+        student_paper_id,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="paperTitle != null" >
+        paper_title,
+      </if>
+      <if test="paperTeacher != null" >
+        paper_teacher,
+      </if>
+      <if test="paperStart != null" >
+        paper_start,
+      </if>
+      <if test="paperTime != null" >
+        paper_time,
+      </if>
+      <if test="paperScore != null" >
+        paper_score,
+      </if>
+      <if test="paperComments != null" >
+        paper_comments,
+      </if>
+      <if test="regTime != null" >
+        reg_time,
+      </if>
+      <if test="paperNote != null" >
+        paper_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentPaperId != null" >
+        #{studentPaperId,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="paperTitle != null" >
+        #{paperTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="paperTeacher != null" >
+        #{paperTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="paperStart != null" >
+        #{paperStart,jdbcType=VARCHAR},
+      </if>
+      <if test="paperTime != null" >
+        #{paperTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paperScore != null" >
+        #{paperScore,jdbcType=VARCHAR},
+      </if>
+      <if test="paperComments != null" >
+        #{paperComments,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paperNote != null" >
+        #{paperNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Educational.entity.StudentGraduationThesisExample" resultType="java.lang.Integer" >
+    select count(*) from student_graduation_thesis
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student_graduation_thesis
+    <set >
+      <if test="record.studentPaperId != null" >
+        student_paper_id = #{record.studentPaperId,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentId != null" >
+        student_id = #{record.studentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        staff_id = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.paperTitle != null" >
+        paper_title = #{record.paperTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperTeacher != null" >
+        paper_teacher = #{record.paperTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperStart != null" >
+        paper_start = #{record.paperStart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperTime != null" >
+        paper_time = #{record.paperTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paperScore != null" >
+        paper_score = #{record.paperScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperComments != null" >
+        paper_comments = #{record.paperComments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regTime != null" >
+        reg_time = #{record.regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paperNote != null" >
+        paper_note = #{record.paperNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student_graduation_thesis
+    set student_paper_id = #{record.studentPaperId,jdbcType=INTEGER},
+      student_id = #{record.studentId,jdbcType=INTEGER},
+      staff_id = #{record.staffId,jdbcType=INTEGER},
+      paper_title = #{record.paperTitle,jdbcType=VARCHAR},
+      paper_teacher = #{record.paperTeacher,jdbcType=VARCHAR},
+      paper_start = #{record.paperStart,jdbcType=VARCHAR},
+      paper_time = #{record.paperTime,jdbcType=TIMESTAMP},
+      paper_score = #{record.paperScore,jdbcType=VARCHAR},
+      paper_comments = #{record.paperComments,jdbcType=VARCHAR},
+      reg_time = #{record.regTime,jdbcType=TIMESTAMP},
+      paper_note = #{record.paperNote,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Educational.entity.StudentGraduationThesis" >
+    update student_graduation_thesis
+    <set >
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="paperTitle != null" >
+        paper_title = #{paperTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="paperTeacher != null" >
+        paper_teacher = #{paperTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="paperStart != null" >
+        paper_start = #{paperStart,jdbcType=VARCHAR},
+      </if>
+      <if test="paperTime != null" >
+        paper_time = #{paperTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paperScore != null" >
+        paper_score = #{paperScore,jdbcType=VARCHAR},
+      </if>
+      <if test="paperComments != null" >
+        paper_comments = #{paperComments,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paperNote != null" >
+        paper_note = #{paperNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where student_paper_id = #{studentPaperId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Educational.entity.StudentGraduationThesis" >
+    update student_graduation_thesis
+    set student_id = #{studentId,jdbcType=INTEGER},
+      staff_id = #{staffId,jdbcType=INTEGER},
+      paper_title = #{paperTitle,jdbcType=VARCHAR},
+      paper_teacher = #{paperTeacher,jdbcType=VARCHAR},
+      paper_start = #{paperStart,jdbcType=VARCHAR},
+      paper_time = #{paperTime,jdbcType=TIMESTAMP},
+      paper_score = #{paperScore,jdbcType=VARCHAR},
+      paper_comments = #{paperComments,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      paper_note = #{paperNote,jdbcType=VARCHAR}
+    where student_paper_id = #{studentPaperId,jdbcType=INTEGER}
+  </update>
+</mapper>
