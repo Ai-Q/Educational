@@ -1,4 +1,4 @@
 jdbc.driver=com.mysql.jdbc.Driver
-jdbc.url=jdbc:mysql:///educational?characterEncoding=utf-8
+jdbc.url=jdbc:mysql://47.107.208.125:3306/educational?characterEncoding=utf-8
 jdbc.username=root
-jdbc.password=123456
+jdbc.password=hzf.0214
