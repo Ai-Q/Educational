@@ -2,6 +2,7 @@ package com.Educational.test;
 
 import com.Educational.entity.AnthortyInfo;
 import com.Educational.entity.UploadFile;
+import com.Educational.service.AnthortyInfoService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,6 +15,7 @@ public class AnthortyInfoTest {
       ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContent.xml");
       @Test
       public void test(){
+
           AnthortyInfoService service=ac.getBean(AnthortyInfoService.class);
           AnthortyInfo anthortyInfo=new AnthortyInfo();
           anthortyInfo.setAnthortyName("test");
@@ -25,11 +27,11 @@ public class AnthortyInfoTest {
 
     @Test
     public void queryOne(){
-        UploadFileService bean = ac.getBean(UploadFileService.class);
+      /*  UploadFileService bean = ac.getBean(UploadFileService.class);
         UploadFile u = new UploadFile();
         u.setFileName("wuwenjian");
         Integer save = bean.save(u);
-        System.out.println(save);
+        System.out.println(save);*/
      /*   System.out.println("studentInfoService="+studentInfoService);
         System.out.println("13212");
         StudentInfo employee = new   StudentInfo();

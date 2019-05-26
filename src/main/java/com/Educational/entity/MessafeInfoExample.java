@@ -1,10 +1,11 @@
 package com.Educational.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MessafeInfoExample implements Serializable{
+public class MessafeInfoExample implements Serializable {
     protected String orderByClause;
 
     protected boolean distinct;

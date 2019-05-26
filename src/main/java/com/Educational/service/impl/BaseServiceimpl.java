@@ -2,6 +2,8 @@ package com.Educational.service.impl;
 
 import com.Educational.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.ExampleMatcher;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -106,7 +108,6 @@ public class BaseServiceimpl<T>  implements  BaseService<T>{
      * @return
      */
     public  Integer deleteById(Object id){return this.getMapper().deleteByPrimaryKey(id);}
-
 
 
 }

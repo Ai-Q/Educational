@@ -1,8 +1,9 @@
 package com.Educational.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class StudentPayment implements Serializable{
+public class StudentPayment implements Serializable {
     private Integer paymentId;
 
     private Integer studentId;

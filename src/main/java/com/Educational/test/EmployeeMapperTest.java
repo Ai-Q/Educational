@@ -18,11 +18,11 @@ public class EmployeeMapperTest {
 
     @Test
     public void queryOne(){
-         UploadFileService bean = app.getBean(UploadFileService.class);
+       /*  UploadFileService bean = app.getBean(UploadFileService.class);
         UploadFile u = new UploadFile();
        u.setFileName("wuwenjian");
         Integer save = bean.save(u);
-        System.out.println(save);
+        System.out.println(save);*/
      /*   System.out.println("studentInfoService="+studentInfoService);
         System.out.println("13212");
         StudentInfo employee = new   StudentInfo();
