@@ -1,6 +1,8 @@
 package com.Educational.entity;
 
-public class RoleAnthorityInfo {
+import java.io.Serializable;
+
+public class RoleAnthorityInfo implements Serializable {
     private Integer roleAnthorityId;
 
     private Integer roleId;

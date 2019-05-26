@@ -1,6 +1,8 @@
 package com.Educational.entity;
 
-public class DataDictionary {
+import java.io.Serializable;
+
+public class DataDictionary implements Serializable {
     private Integer dataId;
 
     private String dataContent;

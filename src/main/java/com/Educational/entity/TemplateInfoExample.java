@@ -3,7 +3,7 @@ package com.Educational.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TemplateInfoExample {
+public class TemplateInfoExample implements Serializable{
     protected String orderByClause;
 
     protected boolean distinct;

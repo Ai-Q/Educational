@@ -1,6 +1,8 @@
 package com.Educational.entity;
 
-public class TemplateInfo {
+import java.io.Serializable;
+
+public class TemplateInfo implements Serializable {
     private Integer templateId;
 
     private String templateTitle;

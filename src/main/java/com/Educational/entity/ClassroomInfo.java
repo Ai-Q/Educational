@@ -1,6 +1,8 @@
 package com.Educational.entity;
 
-public class ClassroomInfo {
+import java.io.Serializable;
+
+public class ClassroomInfo  implements Serializable {
     private Integer classroomId;
 
     private String classroomName;

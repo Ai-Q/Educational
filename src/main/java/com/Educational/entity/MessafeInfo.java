@@ -1,8 +1,9 @@
 package com.Educational.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MessafeInfo {
+public class MessafeInfo implements Serializable {
     private Integer messafeId;
 
     private Integer staffId;

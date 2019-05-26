@@ -9,54 +9,46 @@ import java.util.List;
  * @authorshkstart
  * @create2019-05-2518:38
  */
-public class BaseService<T> {
+public interface BaseService<T> {
 
-    @Autowired
-    private Mapper<T> mapper;
-
-    public Mapper<T> getMapper(){
-        return this.mapper;
-    }
 
     /**
      * 查询一个数据
      * @param t
      * @return
      */
-    public T queryOne(T t){
-        return this.getMapper().selectOne(t);
-    }
+    public T queryOne(T t);
     /**
      * 查询集合
      * @param t
      * @return
      */
-    public List<T> queryList(T t){return this.getMapper().select(t);}
+    public List<T> queryList(T t);
     /**
      * 查询所有集合
      * @param
      * @return
      */
-    public List<T> queryAllList(){return this.getMapper().selectAll();}
+    public List<T> queryAllList();
 
     /**
      * 查询数量
      * @param t
      * @return
      */
-    public int queryCount(T t){return this.getMapper().selectCount(t);}
+    public int queryCount(T t);
     /**
      * 根据主键id查询数据
      * @param id
      * @return
      */
-    public T queryByPrimaryKey(Object id){return this.getMapper().selectByPrimaryKey(id);}
+    public T queryByPrimaryKey(Object id);
     /**
      * 判断主键是否存在
      * @param id
      * @return
      */
-    public boolean existsWithPrimaryKey(Object id){return this.getMapper().existsWithPrimaryKey(id);}
+    public boolean existsWithPrimaryKey(Object id);
 
 
 
@@ -66,14 +58,14 @@ public class BaseService<T> {
      * @param t
      * @return 受影响数据行数
      */
-    public Integer save(T t){return this.getMapper().insert(t);}
+    public Integer save(T t);
 
     /**
      * 新增数据 不为null的数据作为参数插入
      * @param t
      * @return 受影响数据行数
      */
-    public  Integer saveSelective(T t){return this.getMapper().insertSelective(t);}
+    public  Integer saveSelective(T t);
 
 
 
@@ -83,13 +75,13 @@ public class BaseService<T> {
      * @param t
      * @return 受影响数据行数
      */
-    public  Integer update(T t){return this.getMapper().updateByPrimaryKey(t);}
+    public  Integer update(T t);
     /**
      * 新增数据 不为null的数据作为参数插入
      * @param t
      * @return
      */
-    public  Integer updateSelective(T t){return this.getMapper().updateByPrimaryKeySelective(t);}
+    public  Integer updateSelective(T t);
 
 
 
@@ -98,13 +90,13 @@ public class BaseService<T> {
      * @param t
      * @return
      */
-    public Integer delete(T t){return this.getMapper().delete(t);}
+    public Integer delete(T t);
     /**
      * 根据主键id删除
      * @param id
      * @return
      */
-    public  Integer deleteById(Object id){return this.getMapper().deleteByPrimaryKey(id);}
+    public  Integer deleteById(Object id);
 
 
 

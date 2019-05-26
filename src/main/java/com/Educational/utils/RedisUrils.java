@@ -1,17 +1,14 @@
-/*
 package com.Educational.utils;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-*/
 /**
  * @outhor Mr.Huang
  * @create 2019:05:25 19:20
- *//*
-
-public class RedisUrils {
+ */
+/*public class RedisUrils {
     private static volatile JedisPool jedisPool=null;
     private RedisUrils(){}
 
@@ -20,14 +17,10 @@ public class RedisUrils {
             synchronized(RedisUrils.class){
                 if(null==jedisPool){
                     JedisPoolConfig poolConfig=new JedisPoolConfig();
-
-
                     poolConfig.setMaxActive(3000);
                     poolConfig.setMaxIdle(30);
                     poolConfig.setMaxWait(100*1000);
                     poolConfig.setTestOnBorrow(true);
-
-
                     jedisPool=new JedisPool(poolConfig,"47.107.208.125",6379);
                 }
             }
@@ -50,5 +43,4 @@ public class RedisUrils {
         System.out.println(jredis.ping());
         RedisUrils.close(redis,jredis);
     }
-}
-*/
+}*/

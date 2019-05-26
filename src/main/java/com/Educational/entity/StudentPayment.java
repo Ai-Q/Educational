@@ -2,7 +2,7 @@ package com.Educational.entity;
 
 import java.util.Date;
 
-public class StudentPayment {
+public class StudentPayment implements Serializable{
     private Integer paymentId;
 
     private Integer studentId;

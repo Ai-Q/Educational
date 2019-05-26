@@ -3,7 +3,7 @@ package com.Educational.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentInfoExample {
+public class StudentInfoExample implements Serializable{
     protected String orderByClause;
 
     protected boolean distinct;

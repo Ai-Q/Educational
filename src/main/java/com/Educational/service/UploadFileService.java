@@ -1,12 +1,11 @@
 package com.Educational.service;
 
 import com.Educational.entity.UploadFile;
-import org.springframework.stereotype.Service;
 
 /**
- * @authorshkstart
- * @create2019-05-2612:19
+ * @author q
+ * @create 2019- 05- 26 15:44
  */
-@Service
-public class UploadFileService extends BaseService<UploadFile> {
+public interface UploadFileService extends BaseService<UploadFile> {
+
 }

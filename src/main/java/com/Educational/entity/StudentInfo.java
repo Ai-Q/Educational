@@ -1,6 +1,6 @@
 package com.Educational.entity;
 
-public class StudentInfo {
+public class StudentInfo implements Serializable{
     private Integer studentId;
 
     private Integer staffId;

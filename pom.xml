@@ -270,6 +270,8 @@
       <version>4.0.0-b06</version>
       <scope>provided</scope>
     </dependency>
+
+
   </dependencies>
 
   <build>

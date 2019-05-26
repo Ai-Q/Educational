@@ -1,6 +1,8 @@
 package com.Educational.entity;
 
-public class RoleInfo {
+import java.io.Serializable;
+
+public class RoleInfo implements Serializable {
     private Integer roleId;
 
     private String roleName;

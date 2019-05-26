@@ -1,8 +1,9 @@
 package com.Educational.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class EvaluationXueqi {
+public class EvaluationXueqi implements Serializable {
     private Integer evaluationId;
 
     private Integer studentId;

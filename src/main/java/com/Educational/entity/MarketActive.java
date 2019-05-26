@@ -1,8 +1,9 @@
 package com.Educational.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MarketActive {
+public class MarketActive implements Serializable {
     private Integer activeId;
 
     private Integer staffId;

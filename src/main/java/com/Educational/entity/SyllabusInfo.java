@@ -1,6 +1,8 @@
 package com.Educational.entity;
 
-public class SyllabusInfo {
+import java.io.Serializable;
+
+public class SyllabusInfo implements Serializable {
     private Integer syllabusId;
 
     private String syllabusYi;

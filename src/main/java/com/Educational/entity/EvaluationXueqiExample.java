@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class EvaluationXueqiExample {
+public class EvaluationXueqiExample implements Serializable {
     protected String orderByClause;
 
     protected boolean distinct;

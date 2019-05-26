@@ -1,8 +1,9 @@
 package com.Educational.entity;
 
-import java.util.Date;
 
-public class CommunicateInfo {
+import java.util.Date;
+import java.io.Serializable;
+public class CommunicateInfo implements Serializable {
     private Integer communicateId;
 
     private Integer studentId;

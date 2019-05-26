@@ -2,7 +2,6 @@ package com.Educational.test;
 
 import com.Educational.entity.UploadFile;
 
-import com.Educational.service.UploadFileService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,10 +20,10 @@ public class EmployeeMapperTest {
     public void queryOne(){
          UploadFileService bean = app.getBean(UploadFileService.class);
         UploadFile u = new UploadFile();
-        u.setFileName("wuwenjian");
-        UploadFile uploadFile = bean.queryOne(u);
-        System.out.println("uploadFile="+uploadFile);
-       /* System.out.println("studentInfoService="+studentInfoService);
+       u.setFileName("wuwenjian");
+        Integer save = bean.save(u);
+        System.out.println(save);
+     /*   System.out.println("studentInfoService="+studentInfoService);
         System.out.println("13212");
         StudentInfo employee = new   StudentInfo();
         StudentInfo employee1 =studentInfoService.queryOne(employee);

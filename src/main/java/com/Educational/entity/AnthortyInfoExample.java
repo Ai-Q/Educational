@@ -1,9 +1,10 @@
 package com.Educational.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnthortyInfoExample {
+public class AnthortyInfoExample implements Serializable {
     protected String orderByClause;
 
     protected boolean distinct;

@@ -1,8 +1,9 @@
 package com.Educational.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class EmailInfo {
+public class EmailInfo implements Serializable {
     private Integer emailId;
 
     private Integer staffId;
