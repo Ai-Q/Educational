@@ -1,6 +1,8 @@
 package com.Educational.entity;
 
-public class AnthortyInfo {
+import java.io.Serializable;
+
+public class AnthortyInfo implements Serializable {
     private Integer anthortyId;
 
     private Integer anthortyPid;

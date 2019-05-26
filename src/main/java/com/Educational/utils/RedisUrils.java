@@ -46,7 +46,9 @@ public class RedisUrils {
 
         JedisPool redis=RedisUrils.getJedisPool();
         Jedis jredis=redis.getResource();
+        jredis.hset("wu","k","123");
         System.out.println(jredis.ping());
+        RedisUrils.close(redis,jredis);
     }
 }
 */
