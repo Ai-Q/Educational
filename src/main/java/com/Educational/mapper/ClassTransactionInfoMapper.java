@@ -3,28 +3,11 @@ package com.Educational.mapper;
 import com.Educational.entity.ClassTransactionInfo;
 import com.Educational.entity.ClassTransactionInfoExample;
 import java.util.List;
+
+import com.Educational.entity.StudentWriteGrade;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface ClassTransactionInfoMapper {
-    int countByExample(ClassTransactionInfoExample example);
+public interface ClassTransactionInfoMapper extends Mapper<ClassTransactionInfo> {
 
-    int deleteByExample(ClassTransactionInfoExample example);
-
-    int deleteByPrimaryKey(Integer classTransactionId);
-
-    int insert(ClassTransactionInfo record);
-
-    int insertSelective(ClassTransactionInfo record);
-
-    List<ClassTransactionInfo> selectByExample(ClassTransactionInfoExample example);
-
-    ClassTransactionInfo selectByPrimaryKey(Integer classTransactionId);
-
-    int updateByExampleSelective(@Param("record") ClassTransactionInfo record, @Param("example") ClassTransactionInfoExample example);
-
-    int updateByExample(@Param("record") ClassTransactionInfo record, @Param("example") ClassTransactionInfoExample example);
-
-    int updateByPrimaryKeySelective(ClassTransactionInfo record);
-
-    int updateByPrimaryKey(ClassTransactionInfo record);
 }

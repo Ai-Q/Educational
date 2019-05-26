@@ -3,28 +3,11 @@ package com.Educational.mapper;
 import com.Educational.entity.EmailInfo;
 import com.Educational.entity.EmailInfoExample;
 import java.util.List;
+
+import com.Educational.entity.StudentWriteGrade;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface EmailInfoMapper {
-    int countByExample(EmailInfoExample example);
+public interface EmailInfoMapper extends Mapper<EmailInfo> {
 
-    int deleteByExample(EmailInfoExample example);
-
-    int deleteByPrimaryKey(Integer emailId);
-
-    int insert(EmailInfo record);
-
-    int insertSelective(EmailInfo record);
-
-    List<EmailInfo> selectByExample(EmailInfoExample example);
-
-    EmailInfo selectByPrimaryKey(Integer emailId);
-
-    int updateByExampleSelective(@Param("record") EmailInfo record, @Param("example") EmailInfoExample example);
-
-    int updateByExample(@Param("record") EmailInfo record, @Param("example") EmailInfoExample example);
-
-    int updateByPrimaryKeySelective(EmailInfo record);
-
-    int updateByPrimaryKey(EmailInfo record);
 }

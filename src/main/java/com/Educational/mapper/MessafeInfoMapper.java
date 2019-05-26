@@ -3,28 +3,11 @@ package com.Educational.mapper;
 import com.Educational.entity.MessafeInfo;
 import com.Educational.entity.MessafeInfoExample;
 import java.util.List;
+
+import com.Educational.entity.StudentWriteGrade;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface MessafeInfoMapper {
-    int countByExample(MessafeInfoExample example);
+public interface MessafeInfoMapper extends Mapper<MessafeInfo> {
 
-    int deleteByExample(MessafeInfoExample example);
-
-    int deleteByPrimaryKey(Integer messafeId);
-
-    int insert(MessafeInfo record);
-
-    int insertSelective(MessafeInfo record);
-
-    List<MessafeInfo> selectByExample(MessafeInfoExample example);
-
-    MessafeInfo selectByPrimaryKey(Integer messafeId);
-
-    int updateByExampleSelective(@Param("record") MessafeInfo record, @Param("example") MessafeInfoExample example);
-
-    int updateByExample(@Param("record") MessafeInfo record, @Param("example") MessafeInfoExample example);
-
-    int updateByPrimaryKeySelective(MessafeInfo record);
-
-    int updateByPrimaryKey(MessafeInfo record);
 }

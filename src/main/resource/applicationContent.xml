@@ -12,22 +12,32 @@
         <!---->
         <context:component-scan base-package="com.Educational"></context:component-scan>
         <!--配置数据源-->
-        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+      <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
             <property name="driverClassName" value="${jdbc.driver}"/>
             <property name="url" value="${jdbc.url}"/>
             <property name="username" value="${jdbc.username}"/>
             <property name="password" value="${jdbc.password}"/>
         </bean>
+
+
         <!--配置数据源-->
         <bean id="sqlSessionFactroy" class="org.mybatis.spring.SqlSessionFactoryBean">
             <property name="dataSource" ref="dataSource"/>
             <property name="configLocation" value="classpath:mybatis.xml"/>
-            <property name="mapperLocations" value="classpath:com.Educational.mapper/*.xml"/>
+           <!-- <property name="mapperLocations" value="classpath:com.Educational.mapper/*.xml"/>-->
+            <property name="typeAliasesPackage" value="com.Educational.entity"></property>
         </bean>
-        <!--配置mapper扫描-->
-        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+
+    <context:component-scan base-package="com.Educational.service"/>
+
+<!--  配置mapper扫描
+    整合通用mapper需要修改的配置
+    原始全类名：org.mybatis.spring.mapper.MapperScannerConfigurer
+    通用mapper全类名:tk.mybatis.spring.mapper.MapperScannerConfigurer"-->
+        <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
             <property name="basePackage" value="com.Educational.mapper"/>
-            <property name="sqlSessionFactory" ref="sqlSessionFactroy"/>
+            <!--<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>-->
+
         </bean>
         <!--事务-->
         <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

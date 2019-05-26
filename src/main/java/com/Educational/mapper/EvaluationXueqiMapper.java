@@ -3,28 +3,11 @@ package com.Educational.mapper;
 import com.Educational.entity.EvaluationXueqi;
 import com.Educational.entity.EvaluationXueqiExample;
 import java.util.List;
+
+import com.Educational.entity.StudentWriteGrade;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface EvaluationXueqiMapper {
-    int countByExample(EvaluationXueqiExample example);
+public interface EvaluationXueqiMapper extends Mapper<EvaluationXueqi> {
 
-    int deleteByExample(EvaluationXueqiExample example);
-
-    int deleteByPrimaryKey(Integer evaluationId);
-
-    int insert(EvaluationXueqi record);
-
-    int insertSelective(EvaluationXueqi record);
-
-    List<EvaluationXueqi> selectByExample(EvaluationXueqiExample example);
-
-    EvaluationXueqi selectByPrimaryKey(Integer evaluationId);
-
-    int updateByExampleSelective(@Param("record") EvaluationXueqi record, @Param("example") EvaluationXueqiExample example);
-
-    int updateByExample(@Param("record") EvaluationXueqi record, @Param("example") EvaluationXueqiExample example);
-
-    int updateByPrimaryKeySelective(EvaluationXueqi record);
-
-    int updateByPrimaryKey(EvaluationXueqi record);
 }

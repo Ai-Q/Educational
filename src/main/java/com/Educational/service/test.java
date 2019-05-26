@@ -1,4 +1,4 @@
-package com.Educational.server;
+package com.Educational.service;
 
 /**
  * @outhor Mr.Huang

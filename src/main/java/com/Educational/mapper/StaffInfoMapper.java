@@ -3,28 +3,11 @@ package com.Educational.mapper;
 import com.Educational.entity.StaffInfo;
 import com.Educational.entity.StaffInfoExample;
 import java.util.List;
+
+import com.Educational.entity.StudentWriteGrade;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface StaffInfoMapper {
-    int countByExample(StaffInfoExample example);
+public interface StaffInfoMapper extends Mapper<StaffInfo> {
 
-    int deleteByExample(StaffInfoExample example);
-
-    int deleteByPrimaryKey(Integer staffId);
-
-    int insert(StaffInfo record);
-
-    int insertSelective(StaffInfo record);
-
-    List<StaffInfo> selectByExample(StaffInfoExample example);
-
-    StaffInfo selectByPrimaryKey(Integer staffId);
-
-    int updateByExampleSelective(@Param("record") StaffInfo record, @Param("example") StaffInfoExample example);
-
-    int updateByExample(@Param("record") StaffInfo record, @Param("example") StaffInfoExample example);
-
-    int updateByPrimaryKeySelective(StaffInfo record);
-
-    int updateByPrimaryKey(StaffInfo record);
 }

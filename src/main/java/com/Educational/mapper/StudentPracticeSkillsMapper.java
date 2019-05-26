@@ -3,28 +3,11 @@ package com.Educational.mapper;
 import com.Educational.entity.StudentPracticeSkills;
 import com.Educational.entity.StudentPracticeSkillsExample;
 import java.util.List;
+
+import com.Educational.entity.StudentWriteGrade;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface StudentPracticeSkillsMapper {
-    int countByExample(StudentPracticeSkillsExample example);
+public interface StudentPracticeSkillsMapper extends Mapper<StudentPracticeSkills> {
 
-    int deleteByExample(StudentPracticeSkillsExample example);
-
-    int deleteByPrimaryKey(Integer studentPracticeId);
-
-    int insert(StudentPracticeSkills record);
-
-    int insertSelective(StudentPracticeSkills record);
-
-    List<StudentPracticeSkills> selectByExample(StudentPracticeSkillsExample example);
-
-    StudentPracticeSkills selectByPrimaryKey(Integer studentPracticeId);
-
-    int updateByExampleSelective(@Param("record") StudentPracticeSkills record, @Param("example") StudentPracticeSkillsExample example);
-
-    int updateByExample(@Param("record") StudentPracticeSkills record, @Param("example") StudentPracticeSkillsExample example);
-
-    int updateByPrimaryKeySelective(StudentPracticeSkills record);
-
-    int updateByPrimaryKey(StudentPracticeSkills record);
 }

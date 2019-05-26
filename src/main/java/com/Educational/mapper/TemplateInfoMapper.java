@@ -3,28 +3,11 @@ package com.Educational.mapper;
 import com.Educational.entity.TemplateInfo;
 import com.Educational.entity.TemplateInfoExample;
 import java.util.List;
+
+import com.Educational.entity.TrackRecordInfo;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface TemplateInfoMapper {
-    int countByExample(TemplateInfoExample example);
+public interface TemplateInfoMapper extends Mapper<TemplateInfo> {
 
-    int deleteByExample(TemplateInfoExample example);
-
-    int deleteByPrimaryKey(Integer templateId);
-
-    int insert(TemplateInfo record);
-
-    int insertSelective(TemplateInfo record);
-
-    List<TemplateInfo> selectByExample(TemplateInfoExample example);
-
-    TemplateInfo selectByPrimaryKey(Integer templateId);
-
-    int updateByExampleSelective(@Param("record") TemplateInfo record, @Param("example") TemplateInfoExample example);
-
-    int updateByExample(@Param("record") TemplateInfo record, @Param("example") TemplateInfoExample example);
-
-    int updateByPrimaryKeySelective(TemplateInfo record);
-
-    int updateByPrimaryKey(TemplateInfo record);
 }

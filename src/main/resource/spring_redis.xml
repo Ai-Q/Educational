@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<!-- 最大连接数 -->
+		<property name="maxTotal" value="50"></property>
+		<!-- 	最大空闲数 -->
+		<property name="maxIdle" value="5"></property>
+
+	</bean>
+	<!-- spring整合jedis(redis) -->
+	<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+
+		<!-- 指定服务器地址 -->
+		<property name="hostName" value="47.107.208.125"></property>
+		<!-- 指定端口号 -->
+		<property name="port" value="6379"></property>
+		<!-- 指定密码 -->
+		<!--<property name="password" value="wuwenjian"></property>-->
+
+		<!-- 自定义连接池配置 -->
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+	</bean>
+
+
+	<!-- RedisTemplate -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory"></property>
+		<!-- key进行序列化设置，默认jdk改为String -->
+		<!--<property name="keySerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+		</property>-->
+		<!-- value默认jdk改为String -->
+		<!--<property name="valueSerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+		</property>-->
+	</bean>
+
+		
+</beans>

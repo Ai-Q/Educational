@@ -3,28 +3,11 @@ package com.Educational.mapper;
 import com.Educational.entity.RoleInfo;
 import com.Educational.entity.RoleInfoExample;
 import java.util.List;
+
+import com.Educational.entity.StudentWriteGrade;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface RoleInfoMapper {
-    int countByExample(RoleInfoExample example);
+public interface RoleInfoMapper extends Mapper<RoleInfo> {
 
-    int deleteByExample(RoleInfoExample example);
-
-    int deleteByPrimaryKey(Integer roleId);
-
-    int insert(RoleInfo record);
-
-    int insertSelective(RoleInfo record);
-
-    List<RoleInfo> selectByExample(RoleInfoExample example);
-
-    RoleInfo selectByPrimaryKey(Integer roleId);
-
-    int updateByExampleSelective(@Param("record") RoleInfo record, @Param("example") RoleInfoExample example);
-
-    int updateByExample(@Param("record") RoleInfo record, @Param("example") RoleInfoExample example);
-
-    int updateByPrimaryKeySelective(RoleInfo record);
-
-    int updateByPrimaryKey(RoleInfo record);
 }

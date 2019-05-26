@@ -3,13 +3,13 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <!--扫描实体类-->
-    <typeAliases>
+  <!--  <typeAliases>
         <package name="com.Educational.entity"/>
-    </typeAliases>
+    </typeAliases>-->
     <!--分页插件-->
-    <plugins>
+   <!-- <plugins>
         <plugin interceptor="com.github.pagehelper.PageInterceptor">
             <property name="reasonable" value="true"/>
         </plugin>
-    </plugins>
+    </plugins>-->
 </configuration>

@@ -1,8 +1,11 @@
 package com.Educational.entity;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-
+@Table(name="upload_file")
 public class UploadFile {
+    @Id
     private Integer fileId;
 
     private Integer staffId;
