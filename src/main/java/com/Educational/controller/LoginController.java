@@ -1,6 +1,8 @@
 package com.Educational.controller;
 
+import com.Educational.entity.StaffInfo;
 import com.Educational.entity.StudentInfo;
+import com.Educational.service.StaffInfoService;
 import com.Educational.service.StudentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,33 +23,38 @@ public class LoginController {
 
     @Autowired
     private StudentInfoService studentInfoService;
+    @Autowired
+    private StaffInfoService staffInfoService;
 
     //登录功能
     @ResponseBody
     @RequestMapping("/login")
     public String  login(Integer type, String name, String password, HttpSession session){
 
-
-
         if(type == 1){//1为老师登录否者学生登录
-
-
-
-        }else{
-            StudentInfo studentInfo=new StudentInfo();
-            studentInfo.setStudentNo(name);//学生已学号登录
-            studentInfo.setStudentPassword(password);
-            StudentInfo studentInfo1 = studentInfoService.queryOne(studentInfo);
-            if(studentInfo!=null) {//登录成功
+            StaffInfo staffInfo=new StaffInfo();
+            staffInfo.setUserNumber(name);
+            staffInfo.setUserPassowrd(password);
+            StaffInfo staffInfo1queryOne = staffInfoService.queryOne(staffInfo);
+            if(staffInfo1queryOne!=null) {//登录成功
+                session.setAttribute("staffInfo",staffInfo1queryOne);
                 return "loginok";
             } else{
                 return "loginerror";
             }
-
+        }else {
+            StudentInfo studentInfo = new StudentInfo();
+            studentInfo.setStudentNo(name);//学生以学号登录
+            studentInfo.setStudentPassword(password);
+            StudentInfo studentInfoqueryOne = studentInfoService.queryOne(studentInfo);
+            if (studentInfoqueryOne != null) {//登录成功
+                session.setAttribute("studentInfo",studentInfoqueryOne);
+                return "loginok";
+            } else {
+                return "loginerror";
+            }
 
         }
-         return "";
-
     }
 
 
