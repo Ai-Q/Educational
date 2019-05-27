@@ -9,5 +9,5 @@ import tk.mybatis.mapper.common.BaseMapper;
  */
 public interface StudentInfoService  extends BaseService<StudentInfo> {
 
-     StudentInfo Login(String student_no,String studnet_password );
+
 }

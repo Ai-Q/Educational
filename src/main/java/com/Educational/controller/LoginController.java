@@ -5,7 +5,6 @@ import com.Educational.entity.StudentInfo;
 import com.Educational.service.StaffInfoService;
 import com.Educational.service.StudentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpSession;
  * @create 2019- 05- 26 23:27
  */
 
-@Controller
 public class LoginController {
 
 
