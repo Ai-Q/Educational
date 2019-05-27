@@ -6,6 +6,7 @@ import com.Educational.service.AnthortyInfoService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import tk.mybatis.mapper.entity.Example;
 
 /**
  * @author q
@@ -18,10 +19,9 @@ public class AnthortyInfoTest {
 
           AnthortyInfoService service=ac.getBean(AnthortyInfoService.class);
           AnthortyInfo anthortyInfo=new AnthortyInfo();
-          anthortyInfo.setAnthortyName("test");
-          Integer save = service.save(anthortyInfo);
-          System.out.println(save);
-
+           Example example = new Example(AnthortyInfo.class);
+          example.orderBy("anthortyPid").desc();
+          service.queryEmpListByExamle(example);
 
       }
 
