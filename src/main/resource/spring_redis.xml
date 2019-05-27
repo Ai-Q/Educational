@@ -35,14 +35,24 @@
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
 		<property name="connectionFactory" ref="jedisConnectionFactory"></property>
 		<!-- key进行序列化设置，默认jdk改为String -->
-		<!--<property name="keySerializer">
+		<property name="keySerializer">
 			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
-		</property>-->
+		</property>
 		<!-- value默认jdk改为String -->
-		<!--<property name="valueSerializer">
+		<property name="valueSerializer">
 			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
-		</property>-->
-	</bean>
+		</property>
 
+		<property name="hashKeySerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+		</property>
+		<property name="hashValueSerializer">
+			<bean class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
+		</property>
+	</bean>
+	<!--自定义redis工具类,在需要缓存的地方注入此类  -->
+	<bean id="redisUtil" class="com.Educational.utils.RedisUtil">
+		<property name="redisTemplate" ref="redisTemplate"></property>
+	</bean>
 		
 </beans>

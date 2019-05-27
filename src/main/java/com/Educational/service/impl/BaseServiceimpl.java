@@ -3,8 +3,8 @@ package com.Educational.service.impl;
 import com.Educational.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.domain.ExampleMatcher;
 import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -108,6 +108,19 @@ public class BaseServiceimpl<T>  implements  BaseService<T>{
      * @return
      */
     public  Integer deleteById(Object id){return this.getMapper().deleteByPrimaryKey(id);}
+
+
+
+
+    /**
+     * qbc多条件查询
+     * @param example
+     * @return
+     */
+    @Override
+    public List<T> queryEmpListByExamle(Example example) {
+        return this.getMapper().selectByExample(example);
+    }
 
 
 }
