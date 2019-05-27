@@ -1,7 +1,9 @@
 package com.Educational.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import tk.mybatis.mapper.common.ExampleMapper;
 import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -97,7 +99,10 @@ public interface BaseService<T> {
      * @return
      */
     public  Integer deleteById(Object id);
-
+    /**
+     * qbc查询
+     */
+    public List<T> queryEmpListByExamle(Example example);
 
 
 
