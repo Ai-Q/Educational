@@ -34,7 +34,7 @@
     整合通用mapper需要修改的配置
     原始全类名：org.mybatis.spring.mapper.MapperScannerConfigurer
     通用mapper全类名:tk.mybatis.spring.mapper.MapperScannerConfigurer"-->
-        <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
             <property name="basePackage" value="com.Educational.mapper"/>
             <!--<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>-->
 

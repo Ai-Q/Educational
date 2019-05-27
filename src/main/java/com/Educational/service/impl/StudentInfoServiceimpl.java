@@ -13,13 +13,4 @@ import org.springframework.stereotype.Service;
 @Service
 public class StudentInfoServiceimpl extends  BaseServiceimpl<StudentInfo> implements StudentInfoService {
 
-    @Autowired
-    private StudentInfoMapper studentInfoMapper;
-
-    @Override
-    public StudentInfo Login(String student_no, String studnet_password) {
-
-
-        return null;
-    }
 }

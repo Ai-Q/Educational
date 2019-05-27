@@ -1,3 +1,4 @@
+/*
 package com.Educational.test;
 
 import org.junit.Test;
@@ -5,10 +6,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
 
+*/
 /**
  * @authorshkstart
  * @create2019-05-2523:58
- */
+ *//*
+
 public class TestTemplate {
     ClassPathXmlApplicationContext app = new ClassPathXmlApplicationContext("applicationContent.xml","spring_redis.xml");
     RedisTemplate redisTemplate = (RedisTemplate) app.getBean("redisTemplate");
@@ -20,3 +23,4 @@ public class TestTemplate {
         System.out.println("redisTemplate="+redisTemplate);
     }
 }
+*/

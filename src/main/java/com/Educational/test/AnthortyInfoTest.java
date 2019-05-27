@@ -1,10 +1,8 @@
 package com.Educational.test;
 
 import com.Educational.entity.AnthortyInfo;
-import com.Educational.entity.StudentInfo;
 import com.Educational.entity.UploadFile;
 import com.Educational.service.AnthortyInfoService;
-import com.Educational.service.StudentInfoService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,18 +16,13 @@ public class AnthortyInfoTest {
       @Test
       public void test(){
 
-       /*   AnthortyInfoService service=ac.getBean(AnthortyInfoService.class);
+          AnthortyInfoService service=ac.getBean(AnthortyInfoService.class);
           AnthortyInfo anthortyInfo=new AnthortyInfo();
           anthortyInfo.setAnthortyName("test");
           Integer save = service.save(anthortyInfo);
-          System.out.println(save);*/
+          System.out.println(save);
 
-          StudentInfoService service=ac.getBean(StudentInfoService.class);
-          StudentInfo studentInfo=new StudentInfo();
-          studentInfo.setStudentNo("201700000404");//学生已学号登录
-          studentInfo.setStudentPassword("1");
-          StudentInfo queryOne = service.queryOne(studentInfo);
-          System.out.println(queryOne);
+
       }
 
     @Test
