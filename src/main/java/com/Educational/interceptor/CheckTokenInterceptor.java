@@ -33,6 +33,8 @@ public class CheckTokenInterceptor implements HandlerInterceptor {
         }else if(request.getRequestURI().contains("noticeInfo/noticeList")){
             /*对获取资讯放行*/
             return true;
+        }else if(request.getRequestURI().contains("findName")){
+            return true;
         }else {
             PrintWriter out =response.getWriter();
             out.print("这里是服务端");

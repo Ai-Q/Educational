@@ -6,6 +6,7 @@ import com.Educational.security.Aes;
 import com.Educational.service.StaffInfoService;
 import com.Educational.service.StudentInfoService;
 import com.Educational.utils.RedisUtil;
+import com.Educational.utils.RedisUtils;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -36,7 +37,7 @@ public class LoginController {
     @Autowired
     private StaffInfoService staffInfoService;
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisUtils redisUtil;
 
     //分发登陆前的loginToken
     @ResponseBody
@@ -49,6 +50,7 @@ public class LoginController {
         response.setCharacterEncoding("UTF-8");
         return Aes.aesEncrypt(loginToken);
     }
+
 
 
     //登录功能

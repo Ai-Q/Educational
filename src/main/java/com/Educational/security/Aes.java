@@ -143,11 +143,11 @@ public class Aes {
      */
     public static void main(String[] args) throws Exception {
         String content = "123";
-        System.out.println("加密前：" + content);
+        System.out.println("加密前：" + "loginToken4b9c1419-1a76-44ba-ad06-0421223502cc");
         System.out.println("加密密钥和解密密钥：" + KEY);
-        String encrypt = aesEncrypt(content, KEY);
+        String encrypt = aesEncrypt("loginToken4b9c1419-1a76-44ba-ad06-0421223502cc", KEY);
         System.out.println("加密后：" + encrypt);
-        String decrypt = aesDecrypt("sIaKap9w20xOqe8jNC2MXQ==", KEY);
+        String decrypt = aesDecrypt("fNMtYIqo+rkva55YBmwDO0Sx+eyCIilkF0Otc1fXoYSla3YLp+aybI/HUgs0RLUU", KEY);
         System.out.println("解密后：" + decrypt);
     }
 }

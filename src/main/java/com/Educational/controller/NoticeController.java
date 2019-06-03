@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.jedis.JedisUtils;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +29,7 @@ import java.util.List;
  * @create 2019:05:27 9:26
  * 登陆页校园资讯
  */
-@RestController
+@Controller
 @RequestMapping("noticeInfo")
 public class NoticeController {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
