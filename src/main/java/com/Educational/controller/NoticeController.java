@@ -45,20 +45,16 @@ public class NoticeController {
     @RequestMapping("/noticeList")
     public Object findAll1() {
         logger.info("请求controller中NoticeController层里================");
-        System.out.println("是否存在" + redis.hasKey("noticeInfoList"));
         if (!redis.hasKey("noticeInfoList")) {
-            System.out.println("这里");
             Example example = new Example(NoticeInfo.class);
             example.orderBy("noticeTime").desc();
             List<NoticeInfo> list = new ArrayList<NoticeInfo>();
             list = noticeInfoService.queryEmpListByExamle(example);
-            redis.lSet("noticeInfoList", JSON.toJSONString(list));
+            redis.set("noticeInfoList", JSON.toJSONString(list));
             return list;
         } else {
-            System.out.println(redis.lGet("noticeInfoList", 0, -1));
-            List l = redis.lGet("noticeInfoList", 0, -1);
-            System.out.println("else" + l);
-            return l;
+            Object o=redis.get("noticeInfoList");
+            return JSON.parse(o.toString());
         }
     }
 }
