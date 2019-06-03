@@ -22,13 +22,12 @@ public class VueFilter implements Filter {
         response.setContentType("application/json;charset=utf-8");
         //告诉浏览器解码方式
         response.setHeader("content-type", "text/html;charset=utf-8");
-
-
-
         response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
             response.setHeader("Access-Control-Max-Age", "3600");
-            response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+            response.setHeader("Access-Control-Allow-Headers", "x-requested-with,token");
+
+        //response.addHeader("Access-Control-Allow-Headers", "Authentication,Origin, X-Requested-With, Content-Type, Accept,token");
             filterChain.doFilter(servletRequest, servletResponse);
         }
 

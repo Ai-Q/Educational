@@ -2,6 +2,8 @@ package com.Educational.service.impl;
 
 import com.Educational.entity.NoticeInfo;
 import com.Educational.service.NoticeInfoService;
+import com.Educational.utils.RedisUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,4 +12,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class NoticeInfoServiceImpl extends  BaseServiceimpl<NoticeInfo> implements NoticeInfoService {
+
 }

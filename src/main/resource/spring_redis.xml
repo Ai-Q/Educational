@@ -8,37 +8,37 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
 
-
+<!--
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
-		<!-- 最大连接数 -->
+		&lt;!&ndash; 最大连接数 &ndash;&gt;
 		<property name="maxTotal" value="50"></property>
-		<!-- 	最大空闲数 -->
+		&lt;!&ndash; 	最大空闲数 &ndash;&gt;
 		<property name="maxIdle" value="5"></property>
 
 	</bean>
-	<!-- spring整合jedis(redis) -->
+	&lt;!&ndash; spring整合jedis(redis) &ndash;&gt;
 	<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
 
-		<!-- 指定服务器地址 -->
+		&lt;!&ndash; 指定服务器地址 &ndash;&gt;
 		<property name="hostName" value="47.107.208.125"></property>
-		<!-- 指定端口号 -->
+		&lt;!&ndash; 指定端口号 &ndash;&gt;
 		<property name="port" value="6379"></property>
-		<!-- 指定密码 -->
-		<!--<property name="password" value="wuwenjian"></property>-->
+		&lt;!&ndash; 指定密码 &ndash;&gt;
+		&lt;!&ndash;<property name="password" value="wuwenjian"></property>&ndash;&gt;
 
-		<!-- 自定义连接池配置 -->
+		&lt;!&ndash; 自定义连接池配置 &ndash;&gt;
 		<property name="poolConfig" ref="jedisPoolConfig"></property>
 	</bean>
 
 
-	<!-- RedisTemplate -->
+	&lt;!&ndash; RedisTemplate &ndash;&gt;
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
 		<property name="connectionFactory" ref="jedisConnectionFactory"></property>
-		<!-- key进行序列化设置，默认jdk改为String -->
+		&lt;!&ndash; key进行序列化设置，默认jdk改为String &ndash;&gt;
 		<property name="keySerializer">
 			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
 		</property>
-		<!-- value默认jdk改为String -->
+		&lt;!&ndash; value默认jdk改为String &ndash;&gt;
 		<property name="valueSerializer">
 			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
 		</property>
@@ -50,9 +50,9 @@
 			<bean class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
 		</property>
 	</bean>
-	<!--自定义redis工具类,在需要缓存的地方注入此类  -->
+	&lt;!&ndash;自定义redis工具类,在需要缓存的地方注入此类  &ndash;&gt;
 	<bean id="redisUtil" class="com.Educational.utils.RedisUtil">
 		<property name="redisTemplate" ref="redisTemplate"></property>
 	</bean>
-		
+		-->
 </beans>

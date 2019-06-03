@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!--定义参数常量-->
+    <!--日志级别-->
+    <!--trace  debug  info  warn  error-->
+    <property name="log.level" value="debug"/>
+    <!--日志保留时间-->
+    <property name="log.maxHistory" value="30"/>
+    <!--日志存储路径  catalina.base tomcat实例的路径-->
+    <property name="log.filePath" value="G:/logs"/>
+    <!--日志格式-->
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thead] %-5level %logger{50} - %msg%n"/>
+
+    <!--指定控制台输出-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="utf-8">
+            <!--日志输出格式-->
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--DEBUG-->
+    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--文件路径-->
+        <flie>${log.filePath}/debug.log</flie>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--文件名称-->
+            <fileNamePattern>
+                ${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <!--保存时间-->
+            <MaxHistory>
+                ${log.maxHistory}
+            </MaxHistory>
+        </rollingPolicy>
+        <!--设置字符-->
+        <encoder charset="utf-8">
+            <!--日志输出格式-->
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <!--过滤器-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!--级别-->
+            <level>DEBUG</level>
+            <!--符合DEBUG就记录-->
+            <onMatch>ACCEPT</onMatch>
+            <!--不符合过滤-->
+            <onMisMatch>DENY</onMisMatch>
+        </filter>
+    </appender>
+
+    <!--==============================================================================-->
+
+    <!--INFO-->
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--文件路径-->
+        <flie>${log.filePath}/info.log</flie>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--文件名称-->
+            <fileNamePattern>
+                ${log.filePath}/info/info.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <!--保存时间-->
+            <MaxHistory>
+                ${log.maxHistory}
+            </MaxHistory>
+        </rollingPolicy>
+        <!--设置字符-->
+        <encoder charset="utf-8">
+            <!--日志输出格式-->
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <!--过滤器-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!--级别-->
+            <level>INFO</level>
+            <!--符合DEBUG就记录-->
+            <onMatch>ACCEPT</onMatch>
+            <!--不符合过滤-->
+            <onMisMatch>DENY</onMisMatch>
+        </filter>
+    </appender>
+
+    <!--=======================================================================-->
+
+    <!--ERROR-->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--文件路径-->
+        <flie>${log.filePath}/error.log</flie>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--文件名称-->
+            <fileNamePattern>
+                ${log.filePath}/error/error.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <!--保存时间-->
+            <MaxHistory>
+                ${log.maxHistory}
+            </MaxHistory>
+        </rollingPolicy>
+        <!--设置字符-->
+        <encoder charset="utf-8">
+            <!--日志输出格式-->
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <!--过滤器-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!--级别-->
+            <level>ERROR</level>
+            <!--符合DEBUG就记录-->
+            <onMatch>ACCEPT</onMatch>
+            <!--不符合过滤-->
+            <onMisMatch>DENY</onMisMatch>
+        </filter>
+    </appender>
+
+    <!--扫描哪些包的====还有debug级别以上的日志信息-->
+    <logger name="com.Educational" level="${log.level}" additivity="true">
+        <appender-ref ref="DEBUG"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+    <!--特殊的loger-->
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>

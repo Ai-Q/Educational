@@ -63,4 +63,16 @@ public class NoticeInfo implements Serializable {
     public void setNoticeContent(String noticeContent) {
         this.noticeContent = noticeContent == null ? null : noticeContent.trim();
     }
+
+    @Override
+    public String toString() {
+        return "NoticeInfo{" +
+                "noticeId=" + noticeId +
+                ", staffId=" + staffId +
+                ", noticeTitle='" + noticeTitle + '\'' +
+                ", noticeTime=" + noticeTime +
+                ", noticeFilename='" + noticeFilename + '\'' +
+                ", noticeContent='" + noticeContent + '\'' +
+                '}';
+    }
 }

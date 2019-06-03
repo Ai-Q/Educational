@@ -382,4 +382,48 @@ public class StudentInfo implements Serializable {
     public void setStudentProject(Double studentProject) {
         this.studentProject = studentProject;
     }
+
+    @Override
+    public String toString() {
+        return "StudentInfo{" +
+                "studentId=" + studentId +
+                ", staffId=" + staffId +
+                ", classId=" + classId +
+                ", studentNo='" + studentNo + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", studentSex='" + studentSex + '\'' +
+                ", studentName1='" + studentName1 + '\'' +
+                ", studentNational='" + studentNational + '\'' +
+                ", studentBirthday='" + studentBirthday + '\'' +
+                ", studentHealth='" + studentHealth + '\'' +
+                ", studentNative='" + studentNative + '\'' +
+                ", studentIndate='" + studentIndate + '\'' +
+                ", studentMarital='" + studentMarital + '\'' +
+                ", studentAddress='" + studentAddress + '\'' +
+                ", studentPost='" + studentPost + '\'' +
+                ", familyTellphone='" + familyTellphone + '\'' +
+                ", studentTellphone='" + studentTellphone + '\'' +
+                ", studentQq='" + studentQq + '\'' +
+                ", studentIsleague='" + studentIsleague + '\'' +
+                ", studentJoinTime='" + studentJoinTime + '\'' +
+                ", studentIdcard='" + studentIdcard + '\'' +
+                ", studentBeforeSchool='" + studentBeforeSchool + '\'' +
+                ", studentHobby='" + studentHobby + '\'' +
+                ", studentSchool='" + studentSchool + '\'' +
+                ", studentPro='" + studentPro + '\'' +
+                ", studentEduSys='" + studentEduSys + '\'' +
+                ", studentProCity='" + studentProCity + '\'' +
+                ", studentType='" + studentType + '\'' +
+                ", studentIspay='" + studentIspay + '\'' +
+                ", studentDesc='" + studentDesc + '\'' +
+                ", studentNumber='" + studentNumber + '\'' +
+                ", studentPassword='" + studentPassword + '\'' +
+                ", studentMark=" + studentMark +
+                ", studentState='" + studentState + '\'' +
+                ", studentHard='" + studentHard + '\'' +
+                ", studentLoan='" + studentLoan + '\'' +
+                ", studentMuster='" + studentMuster + '\'' +
+                ", studentProject=" + studentProject +
+                '}';
+    }
 }
