@@ -46,7 +46,6 @@ public class LoginController {
         String loginToken = "loginToken" + UUID.randomUUID().toString();
         /*默认保存登陆token十分钟*/
         redisUtil.set(loginToken, loginToken, 60 * 10);
-        System.out.println("redisTOken=" + redisUtil.get("loginToken"));
         response.setCharacterEncoding("UTF-8");
         return Aes.aesEncrypt(loginToken);
     }

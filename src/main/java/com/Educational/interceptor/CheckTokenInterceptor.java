@@ -1,6 +1,7 @@
 package com.Educational.interceptor;
 
 import com.Educational.security.Aes;
+import com.Educational.utils.MD5Utils;
 import com.Educational.utils.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.text.Collator;
+import java.util.*;
 
 /**
  * @outhor Mr.Huang
@@ -23,7 +26,6 @@ public class CheckTokenInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
         System.out.println("拦截器中的请求路径"+request.getRequestURI());
         /*日志*/
         logger.info("收到一条请求路径========="+request.getRequestURI());
@@ -33,13 +35,11 @@ public class CheckTokenInterceptor implements HandlerInterceptor {
         }else if(request.getRequestURI().contains("noticeInfo/noticeList")){
             /*对获取资讯放行*/
             return true;
-        }else if(request.getRequestURI().contains("findName")){
-            return true;
         }else {
             PrintWriter out =response.getWriter();
             out.print("这里是服务端");
             /*获取凭证*/
-            String access_token=request.getParameter("access_Token");
+            String access_token=request.getParameter("Access-Token");
             /*解密凭证*/
             String token=Aes.aesDecrypt(access_token);
             /*判断凭证是否存在*/
@@ -50,6 +50,31 @@ public class CheckTokenInterceptor implements HandlerInterceptor {
                 /*获取签名*/
                 String sign=request.getParameter("sign");
                 /*服务端自签*/
+                Enumeration<String> parm = request.getParameterNames();
+                List<String> list=new ArrayList<String>();
+                StringBuffer sb=new StringBuffer();
+                while (parm.hasMoreElements()){
+                    String a=parm.nextElement();
+                    list.add(a+"="+request.getParameter(a));
+                }
+                list.sort(new Comparator<String>() {
+                    @Override
+                    public int compare(String o1, String o2) {
+                        return o1.compareTo(o2);
+                    }
+                });
+                for (String a:list){
+                    sb.append(a);
+                }
+                String s=MD5Utils.calc(sb+token);
+                s.toUpperCase();
+                if(s.equals(sign)){
+                    /*验证成功*/
+                    return true;
+                }else{
+                    out.print("操作出现异常，如非本人操作请修改密码");
+                    return false;
+                }
 
             }
 
