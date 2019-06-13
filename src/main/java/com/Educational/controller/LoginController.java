@@ -1,8 +1,11 @@
 package com.Educational.controller;
 
+import com.Educational.entity.RoleAnthorityInfo;
 import com.Educational.entity.StaffInfo;
 import com.Educational.entity.StudentInfo;
+import com.Educational.mapper.RoleAnthorityInfoMore;
 import com.Educational.security.Aes;
+import com.Educational.service.RoleAnthorityInfoService;
 import com.Educational.service.StaffInfoService;
 import com.Educational.service.StudentInfoService;
 import com.Educational.utils.RedisUtil;
@@ -18,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -31,7 +35,8 @@ import java.util.UUID;
 @Controller
 public class LoginController {
 
-
+    @Autowired
+    private RoleAnthorityInfoService roleAnthorityInfoService;
     @Autowired
     private StudentInfoService studentInfoService;
     @Autowired
@@ -75,6 +80,10 @@ public class LoginController {
                 System.out.println(staffInfo);
                 StaffInfo staffInfo1queryOne = staffInfoService.queryOne(staffInfo);
                 if (staffInfo1queryOne != null) {//登录成功
+                    System.out.println("============================");
+                   List<RoleAnthorityInfoMore> anthortyAll = roleAnthorityInfoService.findAnthortyAll(staffInfo1queryOne.getRoleId(), 1);
+
+                    System.out.println("============================");
                     String uuid = UUID.randomUUID().toString();
                     System.out.println(uuid);
                     /*默认保存两小时*/

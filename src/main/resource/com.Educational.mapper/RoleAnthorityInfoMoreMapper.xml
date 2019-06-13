@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Educational.mapper.RoleAnthorityInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.Educational.entity.RoleAnthorityInfoMore" >
+    <id column="role_anthority_id" property="roleAnthorityId" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="anthorty_id" property="anthortyId" jdbcType="INTEGER" />
+    <association property="anthortyInfo" javaType="com.Educational.entity.AnthortyInfo">
+      <id column="anthorty_id" property="anthortyId" jdbcType="INTEGER" />
+      <result column="anthorty_pid" property="anthortyPid" jdbcType="INTEGER" />
+      <result column="anthorty_name" property="anthortyName" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <select id="findAnthortyAll" resultMap="BaseResultMap">
+    select a.anthorty_id,b.anthorty_pid,b.anthorty_name from role_anthority_info a
+    LEFT JOIN anthorty_info b
+    ON a.anthorty_id=b.anthorty_id
+    WHERE a.role_id=#{roleId} and anthorty_pid=#{anthortyId}
+  </select>
+</mapper>
